@@ -4,93 +4,144 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * index
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function index(Request $request)
+    public function barang()
     {
         $data['title'] = 'Barang';
-        $data['q'] = $request->get('q');
-        $data['barang'] = Barang::where('nama_barang', 'like', '%' . $data['q'] . '%')->get();
-        return view('menu.barang', $data);
+        $barang = Barang::latest()->paginate(5);
+        return view('menu.barang', compact('barang'), $data);
     }
 
-    public function barang(Request $request)
+    public function addbarang()
     {
-        $data['title'] = 'Barang';
-        $data['q'] = $request->get('q');
-        $data['barang'] = Barang::where('nama_barang', 'like', '%' . $data['q'] . '%')->get();
-        return view('menu.barang', $data);
+        $data['title'] = 'Tambah Barang';
+        return view('menu.addbarang', $data);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * create
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
-        //
+        return view('menu.addbarang');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
-        //
+        //validate form
+        $this->validate($request, [
+            'foto'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama_barang'     => 'required|min:5',
+            'tgl'     => 'required',
+            'harga_awal'     => 'required',
+            'deskripsi_barang'   => 'required'
+        ]);
+
+        //upload image
+        $foto = $request->file('foto');
+        $foto->storeAs('public/barang', $foto->hashName());
+
+        //create post
+        Barang::create([
+            'foto'     => $foto->hashName(),
+            'nama_barang'     => $request->nama_barang,
+            'tgl'     => $request->tgl,
+            'harga_awal'     => $request->harga_awal,
+            'deskripsi_barang'   => $request->deskripsi_barang
+        ]);
+
+        //redirect to index
+        return redirect()->route('barang')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
-     * Display the specified resource.
+     * edit
      *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Barang $barang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
+     * @param  mixed $post
+     * @return void
      */
     public function edit(Barang $barang)
     {
-        //
+        $data['title'] = 'Barang';
+        return view('menu.editbarang', compact('barang'), $data);
     }
 
     /**
-     * Update the specified resource in storage.
+     * update
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
+     * @param  mixed $request
+     * @param  mixed $post
+     * @return void
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        //validate form
+        $this->validate($request, [
+            'foto'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama_barang'     => 'required|min:5',
+            'tgl'     => 'required',
+            'harga_awal'     => 'required',
+            'deskripsi_barang'   => 'required'
+        ]);
+
+        //check if image is uploaded
+        if ($request->hasFile('foto')) {
+
+            //upload new image
+            $foto = $request->file('foto');
+            $foto->storeAs('public/barang/', $foto->hashName());
+
+            //delete old image
+            Storage::delete('public/barang/' . $barang->foto);
+
+            //update post with new image
+            $barang->update([
+                'foto'     => $foto->hashName(),
+                'nama_barang'     => $request->nama_barang,
+                'tgl'     => $request->tgl,
+                'harga_awal'     => $request->harga_awal,
+                'deskripsi_barang'   => $request->deskripsi_barang
+            ]);
+        } else {
+
+            //update post without image
+            $barang->update([
+                'nama_barang'     => $request->nama_barang,
+                'tgl'     => $request->tgl,
+                'harga_awal'     => $request->harga_awal,
+                'deskripsi_barang'   => $request->deskripsi_barang
+            ]);
+        }
+
+        //redirect to index
+        return redirect()->route('menu.barang')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Barang $barang)
     {
-        //
+        //delete image
+        Storage::delete('public/barang/' . $barang->foto);
+
+        //delete post
+        $barang->delete();
+
+        //redirect to index
+        return redirect()->route('barang')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

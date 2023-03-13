@@ -1,83 +1,9 @@
 @extends('app')
 @section('content')
-<!-- ========== title-wrapper end ========== -->
-<div class="row">
-  <div class="col-xl-3 col-lg-4 col-sm-6">
-    <div class="icon-card mb-30">
-      <div class="icon purple">
-        <i class="lni lni-cart-full"></i>
-      </div>
-      <div class="content">
-        <h6 class="mb-10">Barang Lelang</h6>
-        <h3 class="text-bold mb-10">34567</h3>
-        <p class="text-sm text-success">
-          <i class="lni lni-arrow-up"></i> +2.00%
-          <span class="text-gray">(30 days)</span>
-        </p>
-      </div>
-    </div>
-    <!-- End Icon Cart -->
-  </div>
-  <!-- End Col -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
-    <div class="icon-card mb-30">
-      <div class="icon success">
-        <i class="lni lni-dollar"></i>
-      </div>
-      <div class="content">
-        <h6 class="mb-10">Lelang Aktif</h6>
-        <h3 class="text-bold mb-10">$74,567</h3>
-        <p class="text-sm text-success">
-          <i class="lni lni-arrow-up"></i> +5.45%
-          <span class="text-gray">Increased</span>
-        </p>
-      </div>
-    </div>
-    <!-- End Icon Cart -->
-  </div>
-  <!-- End Col -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
-    <div class="icon-card mb-30">
-      <div class="icon primary">
-        <i class="lni lni-credit-cards"></i>
-      </div>
-      <div class="content">
-        <h6 class="mb-10">Barang Terjual</h6>
-        <h3 class="text-bold mb-10">$24,567</h3>
-        <p class="text-sm text-danger">
-          <i class="lni lni-arrow-down"></i> -25.00%
-          <span class="text-gray">Expense</span>
-        </p>
-      </div>
-    </div>
-    <!-- End Icon Cart -->
-  </div>
-  <!-- End Col -->
-  <div class="col-xl-3 col-lg-4 col-sm-6">
-    <div class="icon-card mb-30">
-      <div class="icon orange">
-        <i class="lni lni-user"></i>
-      </div>
-      <div class="content">
-        <h6 class="mb-10">Petugas Lelang</h6>
-        <h3 class="text-bold mb-10">34567</h3>
-        <p class="text-sm text-danger">
-          <i class="lni lni-arrow-down"></i> -25.00%
-          <span class="text-gray"> Earning</span>
-        </p>
-      </div>
-    </div>
-    <!-- End Icon Cart -->
-  </div>
-  <!-- End Col -->
-</div>
-<!-- End Col -->
-<!-- ========== tables-wrapper start ========== -->
 <div class="col-lg-12">
   <div class="card-style mb-30">
     <div class="title d-flex flex-wrap align-items-center justify-content-between">
       <div class="left">
-        <h6 class="text-medium mb-30">Data Lelang Barang RealTime</h6>
       </div>
     </div>
     <!-- End Title -->
@@ -91,6 +17,7 @@
             <th>Tanggal Rilis</th>
             <th>Harga</th>
             <th>Deskrisi Barang</th>
+            <th class="text-center">AKSI</th>
           </tr>
         </thead>
         <tbody>
@@ -105,6 +32,14 @@
             <td>{{ $data->tgl }}</td>
             <td>{{ $data->harga_awal }}</td>
             <td>{{ $data->deskripsi_barang }}</td>
+            <td class="text-center">
+              <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('barang.destroy', $data->id) }}" method="POST">
+                <a href="{{ route('barang.edit', $data->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+              </form>
+            </td>
           </tr>
           @empty
           <div class="alert alert-danger">
@@ -137,8 +72,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nama Barang:</label>
-                  <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang"
-                    value="{{ old('nama_barang') }}" placeholder="Masukkan Nama Barang" required>
+                  <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" value="{{ old('nama_barang') }}" placeholder="Masukkan Nama Barang" required>
                   <!-- error message untuk nama_barang -->
                   @error('nama_barang')
                   <div class="alert alert-danger mt-2">
@@ -148,8 +82,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Tanggal Rilis:</label>
-                  <input type="date" class="form-control @error('tgl') is-invalid @enderror" name="tgl"
-                    value="{{ old('tgl') }}" placeholder="Masukkan Tanggal Rilis" required>
+                  <input type="date" class="form-control @error('tgl') is-invalid @enderror" name="tgl" value="{{ old('tgl') }}" placeholder="Masukkan Tanggal Rilis" required>
                   <!-- error message untuk tgl -->
                   @error('tgl')
                   <div class="alert alert-danger mt-2">
@@ -159,8 +92,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Harga Awal:</label>
-                  <input type="text" id="rupiah" class="form-control @error('harga_awal') is-invalid @enderror"
-                    name="harga_awal" value="{{ old('harga_awal') }}" placeholder="Masukkan Harga Awal" required>
+                  <input type="text" id="rupiah" class="form-control @error('harga_awal') is-invalid @enderror" name="harga_awal" value="{{ old('harga_awal') }}" placeholder="Masukkan Harga Awal" required>
                   <!-- error message untuk harga_awal -->
                   @error('harga_awal')
                   <div class="alert alert-danger mt-2">
@@ -196,8 +128,7 @@
                 </script>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Deskripsi Barang:</label>
-                  <textarea class="form-control @error('deskripsi_barang') is-invalid @enderror" name="deskripsi_barang"
-                    rows="5" placeholder="Masukkan Deskipsi Barang" required>{{ old('deskripsi_barang') }}</textarea>
+                  <textarea class="form-control @error('deskripsi_barang') is-invalid @enderror" name="deskripsi_barang" rows="5" placeholder="Masukkan Deskipsi Barang" required>{{ old('deskripsi_barang') }}</textarea>
                   <!-- error message untuk deskripsi_barang -->
                   @error('deskripsi_barang')
                   <div class="alert alert-danger mt-2">
@@ -217,5 +148,4 @@
     </div>
   </div>
 </div>
-
 @endsection

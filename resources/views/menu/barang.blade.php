@@ -1,48 +1,59 @@
 @extends('app')
 @section('content')
-          <div class="col-lg-12">
-            <div class="card-style mb-30">
-              <div class="title d-flex flex-wrap align-items-center justify-content-between">
-                <div class="left">
-                  <h6 class="text-medium mb-30">Data Lelang Realtime</h6>
-                </div>
+<!-- ========== tables-wrapper start ========== -->
+<div class="tables-wrapper">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-0 shadow rounded">
+        <div class="card-body">
+          <a href="{{ route('barang.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Foto Barang</th>
+                <th scope="col">Nama Barang</th>
+                <th scope="col">Tanggal Rilis</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Deskrisi Barang</th>
+                <th class="text-center" scope="col">AKSI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1 ?>
+              @forelse ($barang as $data)
+              <tr>
+                <td>{{ $no++ }}</td>
+                <td class="text-center">
+                  <img src="{{ Storage::url('public/barang/').$data->foto }}" class="rounded" style="width: 150px">
+                </td>
+                <td>{{ $data->nama_barang }}</td>
+                <td>{{ $data->tgl }}</td>
+                <td>{{ $data->harga_awal }}</td>
+                <td>{{ $data->deskripsi_barang }}</td>
+                <td class="text-center">
+                  <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                    action="{{ route('barang.destroy', $data->id_barang) }}" method="POST">
+                    <a href="{{ route('barang.edit', $data->id_barang) }}" class="btn btn-sm btn-primary">EDIT</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                  </form>
+                </td>
+              </tr>
+              @empty
+              <div class="alert alert-danger">
+                Data Post belum Tersedia.
               </div>
-              <!-- End Title -->
-              <div class="table-responsive">
-                <table class="table top-selling-table">
-                  <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Foto Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Tanggal Rilis</th>
-                        <th>Harga</th>
-                        <th>Deskrisi Barang</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $no = 1 ?>
-                    @foreach ($barang as $barang)
-                    <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>{{ $barang->foto }}</td>
-                        <td>{{ $barang->nama_barang }}</td>
-                        <td>{{ $barang->tgl }}</td>
-                        <td>{{ $barang->harga_awal }}</td>
-                        <td>{{ $barang->deskripsi_barang }}</td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-                <!-- End Table -->
-              </div>
-            </div>
-          </div>
-          <!-- End Col -->
+              @endforelse
+            </tbody>
+          </table>
+          {{ $barang->links() }}
         </div>
-        <!-- End Row -->
       </div>
-      <!-- end container -->
-    </section>
-    <!-- ========== section end ========== -->
+    </div>
+  </div>
+</div>
+<!-- end row -->
+<!-- ========== section end ========== -->
 @endsection

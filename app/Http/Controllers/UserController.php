@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -91,6 +92,7 @@ class UserController extends Controller
     public function dashboard()
     {
         $data['title'] = 'Dashboard';
-        return view('user/dashboard', $data);
+        $barang = Barang::latest()->paginate(5);
+        return view('user/dashboard', compact('barang'), $data);
     }
 }

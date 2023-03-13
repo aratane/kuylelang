@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-    <link rel="stylesheet" href="https://kit.fontawesome.com/9342a86551.css" crossorigin="anonymous">
 
     <!-- MOBILE RESPONSIVE -->
     <style>
@@ -44,21 +43,40 @@
               <span class="text">Dashboard</span>
             </a>
           </li>
-        <li class="nav-item">
-            <a href="{{ route('dashboard') }}">
-              <span class="icon">
-                <i class="lni lni-money-location"></i>
-              </span>
-              <span class="text">Penawaran</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('barang') }}">
+          <li class="nav-item nav-item-has-children">
+            <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#barang" aria-controls="barang"
+              aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon">
                 <i class="lni lni-archive"></i>
               </span>
-              <span class="text">Pengajuan</span>
+              <span class="text">Barang</span>
             </a>
+            <ul id="barang" class="collapse dropdown-nav">
+              <li>
+                <a href="{{ route('password') }}">
+                    <span class="icon">
+                      <i class="lni lni-money-location"></i>
+                    </span>
+                    <span class="text">Penawaran</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('barang') }}">
+                    <span class="icon">
+                      <i class="lni lni-money-location"></i>
+                    </span>
+                    <span class="text">List Lelang</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ route('addbarang') }}">
+                    <span class="icon">
+                      <i class="lni lni-reply"></i>
+                    </span>
+                    <span class="text">Pengajuan</span>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="{{ route('dashboard') }}">
@@ -364,7 +382,23 @@
   <script src="{{ asset('') }}assets/js/world-merc.js"></script>
   <script src="{{ asset('') }}assets/js/polyfill.js"></script>
   <script src="{{ asset('') }}assets/js/main.js"></script>
-  <script src="https://kit.fontawesome.com/9342a86551.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        //message with toastr
+        @if(session()->has('success'))
+        
+            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+
+        @elseif(session()->has('error'))
+
+            toastr.error('{{ session('error') }}', 'GAGAL!'); 
+            
+        @endif
+    </script>
 
   <script>
     // ======== jvectormap activation
