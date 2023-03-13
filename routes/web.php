@@ -31,14 +31,3 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 // Dashboard User
 Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard')->middleware('isLogin');
-
-// Barang
-Route::resource('/barang', \App\Http\Controllers\BarangController::class);
-Route::get('barang', [BarangController::class, 'barang'])->name('barang');
-Route::get('addbarang', [BarangController::class, 'addbarang'])->name('addbarang');
-Route::post('destroy', [BarangController::class, 'destroy'])->name('barang.destroy');
-Route::get('edit', [BarangController::class, 'edit'])->name('barang.edit');
-Route::get('update', [BarangController::class, 'update'])->name('barang.update');
-
-//route resource
-Route::resource('/posts', \App\Http\Controllers\PostController::class);

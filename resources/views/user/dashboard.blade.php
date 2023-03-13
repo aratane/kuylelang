@@ -1,4 +1,4 @@
-@extends('app')
+@extends('user/app')
 @section('content')
 <!-- ========== title-wrapper end ========== -->
 <div class="row">
@@ -73,7 +73,7 @@
 </div>
 <!-- End Col -->
 <!-- ========== tables-wrapper start ========== -->
-<div class="col-lg-12">
+{{-- <div class="col-lg-12">
   <div class="card-style mb-30">
     <div class="title d-flex flex-wrap align-items-center justify-content-between">
       <div class="left">
@@ -216,6 +216,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 @endsection

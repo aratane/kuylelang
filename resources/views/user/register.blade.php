@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', $title)</title>
-    
-    <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/lineicons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+  <title>@yield('title', $title)</title>
 
-  </head>
+  <!-- ========== All CSS files linkup ========= -->
+  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/lineicons.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
 
-  <body>
-<div class="row g-0 auth-row">
+</head>
+
+<body>
+  <div class="row g-0 auth-row">
     <div class="col-lg-6">
       <div class="auth-cover-wrapper bg-primary-100">
         <div class="auth-cover">
           <div class="title text-center">
             <h1 class="text-primary mb-10">Daftar Akun Masyarakat</h1>
             <p class="text-medium">
-              Bergabung bersama kami dan menangkan barang lelang yang menarik, <span><b>kami ada khusus untuk anda.</b></span>
+              Bergabung bersama kami dan menangkan barang lelang yang menarik, <span><b>kami ada khusus untuk
+                  anda.</b></span>
             </p>
           </div>
           <div class="cover-image">
@@ -42,7 +43,7 @@
         <div class="form-wrapper">
           @if ($errors->any())
           @foreach ($errors->all() as $err)
-              <p class="alert alert-danger">{{ $err }}</p>
+          <p class="alert alert-danger">{{ $err }}</p>
           @endforeach
           @endif
           <form method="POST" action="{{ route('register.action') }}">
@@ -51,7 +52,8 @@
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Nama Lengkap</label>
-                  <input name="nama_lengkap" type="text" value="{{ old('nama_lengkap') }}" placeholder="Nama lengkap anda..." />
+                  <input name="nama_lengkap" type="text" value="{{ old('nama_lengkap') }}"
+                    placeholder="Nama lengkap anda..." />
                 </div>
               </div>
               <!-- end col -->
@@ -83,7 +85,7 @@
               <!-- end col -->
               <div class="col-12">
                 <div class="form-check checkbox-style mb-30">
-                  <input class="form-check-input" type="checkbox" value="" id="checkbox-not-robot" required/>
+                  <input class="form-check-input" type="checkbox" value="" id="checkbox-not-robot" required />
                   <label class="form-check-label" for="checkbox-not-robot">Saya setuju dengan S&K</label>
                 </div>
               </div>
@@ -91,7 +93,7 @@
               <div class="col-12">
                 <div class="button-group d-flex justify-content-center flex-wrap">
                   <button class="main-btn primary-btn btn-hover w-100 text-center">Register</button>
-                  
+
                   <p class="text-sm text-medium text-dark text-center">
                     Sudah punya akun? <a href="{{ route('login') }}">Silakan Login</a>
                   </p>
@@ -619,4 +621,5 @@
   });
     // =========== chart four end
 </script>
+
 </html>

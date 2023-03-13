@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -14,7 +14,9 @@
   <link href="{{ asset('') }}assets/home/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('') }}assets/home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -78,21 +80,28 @@
             <div class="icon-box">
               <div class="icon"><i class="bi bi-laptop"></i></div>
               <h4 class="title"><a href="">Proses lebih cepat dan efisien</a></h4>
-              <p class="description">Pada sistem pelelangan secara konvensional, biasanya waktu dari penyerahan berkas hingga selesai bisa memakan waktu hingga 7 minggu. Hal ini sangat memakan waktu bagi para pembeli dan penjual. Dengan sistem online, hal seperti verifikasi produk bisa dilakukan sebelumnya sehingga bisa mempercepat proses pelelangan. </p>
+              <p class="description">Pada sistem pelelangan secara konvensional, biasanya waktu dari penyerahan berkas
+                hingga selesai bisa memakan waktu hingga 7 minggu. Hal ini sangat memakan waktu bagi para pembeli dan
+                penjual. Dengan sistem online, hal seperti verifikasi produk bisa dilakukan sebelumnya sehingga bisa
+                mempercepat proses pelelangan. </p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-card-checklist"></i></div>
               <h4 class="title"><a href="">Lebih kompetitif</a></h4>
-              <p class="description">Dengan cara penawaran secara online, para penjual akan lebih bersaing untuk menawarkan produk dan jasa yang ditawarkan. Maka dari itu, persaingan antar penjual akan menjadi lebih kompetitif dan pembeli akan memiliki lebih banyak pilihan saat melakukan bidding.</p>
+              <p class="description">Dengan cara penawaran secara online, para penjual akan lebih bersaing untuk
+                menawarkan produk dan jasa yang ditawarkan. Maka dari itu, persaingan antar penjual akan menjadi lebih
+                kompetitif dan pembeli akan memiliki lebih banyak pilihan saat melakukan bidding.</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-clipboard-data"></i></div>
               <h4 class="title"><a href="">Transparan</a></h4>
-              <p class="description">Sistem lelang online dilakukan secara terbuka di halaman website. Tidak ada prioritas atau batasan di antara para peserta, sehingga seluruh jalannya pelelangan bisa dipantau secara terbuka dan transparan bagi penjual dan pembeli.</p>
+              <p class="description">Sistem lelang online dilakukan secara terbuka di halaman website. Tidak ada
+                prioritas atau batasan di antara para peserta, sehingga seluruh jalannya pelelangan bisa dipantau secara
+                terbuka dan transparan bagi penjual dan pembeli.</p>
             </div>
           </div>
         </div>
@@ -111,13 +120,20 @@
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3>Tentang Aplikasi My E-Lelang</h3>
             <p class="fst-italic">
-            Sistem lelang online merupakan sebuah digitalisasi dari bentuk pelelangan konvensional sekarang ini. Meskipun dilakukan secara online, sistem dan cara kerjanya tidak banyak berubah dari standar pelelangan konvensional.
+              Sistem lelang online merupakan sebuah digitalisasi dari bentuk pelelangan konvensional sekarang ini.
+              Meskipun dilakukan secara online, sistem dan cara kerjanya tidak banyak berubah dari standar pelelangan
+              konvensional.
             </p>
             <p>
-            Selain lebih fleksibel, kelebihan lain menggunakan sistem online untuk melelang sebuah produk adalah banyaknya fitur unggulan yang bisa ditambahkan. Misalnya, Anda menawarkan sebuah produk dengan harga tertentu dan ada ratusan orang yang melakukan penawaran secara bersamaan. 
+              Selain lebih fleksibel, kelebihan lain menggunakan sistem online untuk melelang sebuah produk adalah
+              banyaknya fitur unggulan yang bisa ditambahkan. Misalnya, Anda menawarkan sebuah produk dengan harga
+              tertentu dan ada ratusan orang yang melakukan penawaran secara bersamaan.
             </p>
             <p>
-            Secara konvensional, harus ada beberapa orang yang mencatat jalannya proses pelelangan tersebut dengan bidding masing-masing yang ditawarkan. Hal itu sangat rumit dibandingkan memindahkan aplikasi lelang Anda ke online. Dengan menggunakan aplikasi berbasis IT, maka pergerakan penawaran pun akan terekam secara sistematis dan terstruktur menggunakan sistem keamanan yang tinggi pula.
+              Secara konvensional, harus ada beberapa orang yang mencatat jalannya proses pelelangan tersebut dengan
+              bidding masing-masing yang ditawarkan. Hal itu sangat rumit dibandingkan memindahkan aplikasi lelang Anda
+              ke online. Dengan menggunakan aplikasi berbasis IT, maka pergerakan penawaran pun akan terekam secara
+              sistematis dan terstruktur menggunakan sistem keamanan yang tinggi pula.
             </p>
           </div>
         </div>
@@ -132,22 +148,26 @@
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Pelanggan</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Barang Lelang</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="63" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="63" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Petugas Lelang</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
+              class="purecounter"></span>
             <p>Administrator Perusahaan</p>
           </div>
 
@@ -176,43 +196,48 @@
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-          <div class="icon-box">
+            <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="">Kualitas Barang Terjamin</a></h4>
-              <p>Semua barang yang di ikutsertakan lelang sudah lolos verifikasi kualitas oleh setiap petugas lelang.</p>
+              <p>Semua barang yang di ikutsertakan lelang sudah lolos verifikasi kualitas oleh setiap petugas lelang.
+              </p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="icon-box">
+            <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="">Serba Terjangkau</a></h4>
-              <p>Harga barang lelang yang di tawarkan di 
-My e-Lelang relatif lebih murah .</p>
+              <p>Harga barang lelang yang di tawarkan di
+                My e-Lelang relatif lebih murah .</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
+            <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="">Pengiriman Barang Cepat</a></h4>
-              <p>Kami bekerja sama dengan beberapa ekspedisi yang ada di Indonesia, semua barang yang kami kirim akan di prioritaskan terlebih dahulu.</p>
+              <p>Kami bekerja sama dengan beberapa ekspedisi yang ada di Indonesia, semua barang yang kami kirim akan di
+                prioritaskan terlebih dahulu.</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
+            <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="">User management</a></h4>
-              <p>Kami menyediakan fitur user management dengan tampilan yang mudah dipelajari oleh administrator. Fitur ini berguna untuk mengelola penjual serta pembeli dalam sebuah aplikasi.</p>
+              <p>Kami menyediakan fitur user management dengan tampilan yang mudah dipelajari oleh administrator. Fitur
+                ini berguna untuk mengelola penjual serta pembeli dalam sebuah aplikasi.</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
+            <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="">Fitur penerimaan/penolakan lelang</a></h4>
-              <p>Dalam sebuah pelelangan, akan ada seorang penjual yang akan menampilkan produk yang akan dilelang. Administrator memiliki tugas untuk menyetujui/menolak produk yang akan ditampilkan ke penjual. Maka dari itu, penting menyediakan fitur ini untuk dapat digunakan oleh administrator.</p>
+              <p>Dalam sebuah pelelangan, akan ada seorang penjual yang akan menampilkan produk yang akan dilelang.
+                Administrator memiliki tugas untuk menyetujui/menolak produk yang akan ditampilkan ke penjual. Maka dari
+                itu, penting menyediakan fitur ini untuk dapat digunakan oleh administrator.</p>
             </div>
           </div>
 
@@ -238,7 +263,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>App 1</h4>
               <p>App</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -248,7 +274,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>Web 3</h4>
               <p>Web</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -258,7 +285,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>App 2</h4>
               <p>App</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -268,7 +296,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>Card 2</h4>
               <p>Card</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -278,7 +307,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>Web 2</h4>
               <p>Web</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -288,7 +318,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>App 3</h4>
               <p>App</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -298,7 +329,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>Card 1</h4>
               <p>Card</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -308,7 +340,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>Card 3</h4>
               <p>Card</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -318,7 +351,8 @@ My e-Lelang relatif lebih murah .</p>
             <div class="portfolio-info">
               <h4>Web 3</h4>
               <p>Web</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
+                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
@@ -348,7 +382,8 @@ My e-Lelang relatif lebih murah .</p>
                   Terbaik
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-1.jpg" class="testimonial-img"
+                  alt="">
                 <h3>Saul Goodman</h3>
                 <h4>Ceo &amp; Founder</h4>
               </div>
@@ -361,7 +396,8 @@ My e-Lelang relatif lebih murah .</p>
                   Barang bagus
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-2.jpg" class="testimonial-img"
+                  alt="">
                 <h3>Sara Wilsson</h3>
                 <h4>Designer</h4>
               </div>
@@ -374,7 +410,8 @@ My e-Lelang relatif lebih murah .</p>
                   Tidak ada cacat
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-3.jpg" class="testimonial-img"
+                  alt="">
                 <h3>Jena Karlis</h3>
                 <h4>Store Owner</h4>
               </div>
@@ -393,9 +430,10 @@ My e-Lelang relatif lebih murah .</p>
 
         <div class="text-center">
           <h3>Bergabung Bersama Kami</h3>
-          <p>Aplikasi lelang online yang sukses dapat membantu sebuah bisnis untuk menjangkau 
-lebih banyak pelanggan dari berbagai segmen. <br>Melalui aplikasi lelang, para pelanggan dapat dengan mudah menerima informasi mengenai barang yang diinginkan <br> serta memudahkan mereka untuk ikut berpartisipasi 
-dalam proses lelang. </p>
+          <p>Aplikasi lelang online yang sukses dapat membantu sebuah bisnis untuk menjangkau
+            lebih banyak pelanggan dari berbagai segmen. <br>Melalui aplikasi lelang, para pelanggan dapat dengan mudah
+            menerima informasi mengenai barang yang diinginkan <br> serta memudahkan mereka untuk ikut berpartisipasi
+            dalam proses lelang. </p>
           <a class="cta-btn" href="user/registrasi.php">BERGABUNG</a>
         </div>
 
@@ -433,7 +471,9 @@ dalam proses lelang. </p>
                 <h4>Call:</h4>
                 <p>(62) 8637725232</p>
               </div>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15842.656206572447!2d107.6791652!3d-6.9306977!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c2ade076ca49%3A0x3386663587285417!2sSekolah%20Menengah%20Kejuruan%20Igasar%20Pindad!5e0!3m2!1sid!2sid!4v1677126022389!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15842.656206572447!2d107.6791652!3d-6.9306977!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c2ade076ca49%3A0x3386663587285417!2sSekolah%20Menengah%20Kejuruan%20Igasar%20Pindad!5e0!3m2!1sid!2sid!4v1677126022389!5m2!1sid!2sid"
+                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
             </div>
 
           </div>
@@ -483,15 +523,16 @@ dalam proses lelang. </p>
               lebih banyak pelanggan dari berbagai segmen.</p>
           </div>
         </div>
- 
+
         <div class="row footer-newsletter justify-content-center">
           <div class="col-lg-6">
             <form action="" method="post">
-              <input type="email" name="email" placeholder="Masukan Email anda ..."><input type="submit" value="Berlangganan">
+              <input type="email" name="email" placeholder="Masukan Email anda ..."><input type="submit"
+                value="Berlangganan">
             </form>
           </div>
         </div>
- 
+
         <div class="social-links">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -499,28 +540,29 @@ dalam proses lelang. </p>
           <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
           <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
         </div>
- 
+
       </div>
     </div>
- 
+
     <div class="container footer-bottom clearfix">
       <div class="copyright">
         &copy; Copyright <strong><span>My E-Lelang</span></strong>. All Rights Reserved
       </div>
     </div>
   </footer><!-- End Footer -->
- 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
- 
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
   <script src="{{ asset('') }}assets/home/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="{{ asset('') }}assets/home/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('') }}assets/home/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="{{ asset('') }}assets/home/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="{{ asset('') }}assets/home/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="{{ asset('') }}assets/home/vendor/php-email-form/validate.js"></script>
- 
+
   <script src="{{ asset('') }}assets/home/js/main.js"></script>
- 
-  </body>
- 
-  </html>
+
+</body>
+
+</html>

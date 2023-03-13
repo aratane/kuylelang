@@ -1,4 +1,4 @@
-@extends('app')
+@extends('user/app')
 @section('content')
 <div class="row g-0 auth-row">
     <div class="col-lg-6">
