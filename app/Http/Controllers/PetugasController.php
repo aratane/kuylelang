@@ -2,45 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class PetugasController extends Controller
 {
-    public function register()
+    public function index() {
+        $data['title'] = 'Login Admin';
+        return view('admin/login', $data);
+    }
+    public function adminregister()
     {
         $data['title'] = 'Register';
-        return view('user/register', $data);
+        return view('admin/register', $data);
     }
 
-    public function register_action(Request $request)
+    public function adminregister_action(Request $request)
     {
         $request->validate([
-            'nama_lengkap' => 'required',
-            'username' => 'required|unique:tb_masyarakat',
-            'telp' => 'required',
+            'nama_petugas' => 'required',
+            'username' => 'required|unique:tb_petugas',
+            'id_level' => 'required',
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
-        $user = new User([
-            'nama_lengkap' => $request->nama_lengkap,
+        $user = new Petugas([
+            'nama_petugas' => $request->nama_petugas,
             'username' => $request->username,
-            'telp' => $request->telp,
+            'id_level' => $request->id_level,
             'password' => Hash::make($request->password),
         ]);
         $user->save();
         return redirect()->route('login')->with('success', 'Registrasi Berhasil. Silakan Login!');
     }
 
-    public function login()
+    public function adminlogin()
     {
         $data['title'] = 'Login';
-        return view('user/login', $data);
+        return view('admin/login', $data);
     }
 
-    public function login_action(Request $request)
+    public function adminlogin_action(Request $request)
     {
         $request->validate([
             'username' => 'required',
@@ -57,13 +61,13 @@ class UserController extends Controller
     public function pengaturan()
     {
         $data['title'] = 'Pengaturan';
-        return view('user/menu/pengaturan', $data);
+        return view('admin/menu/pengaturan', $data);
     }
 
     public function password()
     {
         $data['title'] = 'Ganti Password';
-        return view('user/menu/password', $data);
+        return view('admin/menu/password', $data);
     }
 
     public function password_action(Request $request)
@@ -73,7 +77,7 @@ class UserController extends Controller
             'new_password' => 'required|confirmed',
         ]);
 
-        $user = User::find(Auth::id());
+        $user = Petugas::find(Auth::id());
         $user->password = Hash::make($request->new_password);
         $user->save();
         $request->session()->regenerate();
@@ -91,6 +95,6 @@ class UserController extends Controller
     public function dashboard()
     {
         $data['title'] = 'Dashboard';
-        return view('user.dashboard', $data);
+        return view('admin/dashboard', $data);
     }
 }
