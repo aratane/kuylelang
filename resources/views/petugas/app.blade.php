@@ -247,7 +247,7 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2 id="ucapan">Hallo, <b>{{ Auth::user()->nama_lengkap }}</b></h2>
+                <h2 id="ucapan">Hallo, <b>{{ Auth::guard('petugas')->user()->nama_petugas }}</b></h2>
                 <script type='text/javascript'>
                   var now = new Date();
                   var hours = now.getHours();

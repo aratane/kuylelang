@@ -28,7 +28,7 @@
         <p class="alert alert-danger">{{ $err }}</p>
         @endforeach
         @endif
-        <form method="POST" action="{{ route('password.action') }}">
+        <form method="POST" action="{{ route('adminpassword.action') }}">
           @csrf
           <div class="row">
             <div class="col-12">

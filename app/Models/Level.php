@@ -13,4 +13,9 @@ class Level extends Model
     protected $primaryKey = 'id_level';
 
     protected $fillable = ['id_level', 'level'];
+
+    public function user()
+    {
+        return $this->hasMany(Admin::class);
+    }
 }

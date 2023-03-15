@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $data['title'] = 'Dashboard Masyarakat';
-        return view('user/dashboard', $data);
-    }
     public function pengaturan()
     {
         $data['title'] = 'Pengaturan';
@@ -38,5 +33,110 @@ class UserController extends Controller
         $user->save();
         $request->session()->regenerate();
         return back()->with('success', 'Password Berhasil Diganti!');
+    }
+
+    /**
+     * index
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $data['title'] = 'List User Lelang';
+        $user = User::latest()->paginate(5);
+        return view('admin/menu/user', compact('user'), $data);
+    }
+
+    /**
+     * create
+     *
+     * @return void
+     */
+    public function create()
+    {
+        $data['title'] = 'List user';
+        return view('admin/menu/adduser', $data);
+    }
+
+    /**
+     * store
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function store(Request $request)
+    {
+        //validate form
+        $this->validate($request, [
+            'nama_lengkap'     => 'required|min:5',
+            'username'   => 'required|unique:tb_masyarakat',
+            'password'   => 'required',
+            'telp'   => 'required',
+        ]);
+
+        //create post
+        User::create([
+            'nama_lengkap'  => $request->nama_lengkap,
+            'username'   => $request->username,
+            'password' => Hash::make($request->password),
+            'telp'   => $request->telp,
+        ]);
+
+        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    /**
+     * edit
+     *
+     * @param  mixed $post
+     * @return void
+     */
+    public function edit(User $barang)
+    {
+        $data['title'] = 'Edit user';
+        return view('admin/menu/edituser', compact('user'), $data);
+    }
+
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @param  mixed $post
+     * @return void
+     */
+    public function update(Request $request, User $user)
+    {
+        //validate form
+        $this->validate($request, [
+            'nama_lengkap'     => 'required|min:5',
+            'username'   => 'required|unique:tb_masyarakat',
+            'password'   => 'required',
+            'telp'   => 'required',
+        ]);
+
+        $user->update([
+            'nama_lengkap'     => $request->nama_lengkap,
+            'username'   => $request->username,
+            'password' => Hash::make($request->password),
+            'telp'   => $request->telp,
+        ]);
+
+        //redirect to index
+        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
+    /**
+     * destroy
+     *
+     * @param  mixed $post
+     * @return void
+     */
+    public function destroy(User $user)
+    {
+        //delete post
+        $user->delete();
+
+        //redirect to index
+        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

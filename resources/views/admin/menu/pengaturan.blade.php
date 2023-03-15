@@ -3,13 +3,7 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="card-style settings-card-1 mb-30">
-      <div class="
-                      title
-                      mb-30
-                      d-flex
-                      justify-content-between
-                      align-items-center
-                    ">
+      <div class="title mb-30 d-flex justify-content-between align-items-center">
         <h6>Profil Saya</h6>
         <button class="border-0 bg-transparent">
           <i class="lni lni-pencil-alt"></i>
@@ -25,21 +19,21 @@
             </div>
           </div>
           <div class="profile-meta">
-            <h5 class="text-bold text-dark mb-10">{{ Auth::user()->nama_lengkap }}</h5>
-            <p class="text-sm text-gray">Masyarakat</p>
+            <h5 class="text-bold text-dark mb-10">{{ Auth::guard('admin')->user()->nama_petugas }}</h5>
+            <p class="text-sm text-gray">ADMINISTRATOR</p>
           </div>
         </div>
         <div class="input-style-1">
           <label>Username</label>
-          <input type="text" value="{{ Auth::user()->username }}" readonly />
+          <input type="text" value="{{ Auth::guard('admin')->user()->username }}" readonly />
         </div>
         <div class="input-style-1">
           <label>Nomor Telepon</label>
-          <input type="text" value="{{ Auth::user()->telp }}" readonly />
+          <input type="text" value="{{ Auth::guard('admin')->user()->telp }}" readonly />
         </div>
         <div class="input-style-1">
           <label>Tanggal Akun Mendaftar:</label>
-          <input type="text" value="{{ Auth::user()->created_at }}" readonly />
+          <input type="text" value="{{ Auth::guard('admin')->user()->created_at }}" readonly />
         </div>
       </div>
     </div>

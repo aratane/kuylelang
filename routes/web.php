@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('home', function () {
+Route::get('/', function () {
     return view('home', ['title']);
 })->name('home');
 
@@ -35,7 +36,6 @@ Route::group(['middleware' => 'isLogin'], function () {
         // Pengaturan
         Route::get('userpengaturan', [UserController::class, 'pengaturan'])->name('userpengaturan');
         Route::post('userpengaturan', [UserController::class, 'pengaturan_action'])->name('userpengaturan.action');
-        
     });
 });
 // END MASYARAKAT
@@ -44,14 +44,13 @@ Route::group(['middleware' => 'isLogin'], function () {
 Route::group(['middleware' => 'isLogin'], function () {
     Route::group(['middleware' => 'auth:admin'], function () {
         // Dashboard Admin
-        Route::get('admindashboard', [PetugasController::class, 'index'])->name('admindashboard');
+        Route::get('admindashboard', [AdminController::class, 'index'])->name('admindashboard');
         // Ganti Password
-        Route::get('password', [PetugasController::class, 'password'])->name('password');
-        Route::post('password', [PetugasController::class, 'password_action'])->name('password.action');
+        Route::get('adminpassword', [AdminController::class, 'password'])->name('adminpassword');
+        Route::post('adminpassword', [AdminController::class, 'password_action'])->name('adminpassword.action');
         // Pengaturan
-        Route::get('pengaturan', [PetugasController::class, 'pengaturan'])->name('pengaturan');
-        Route::post('pengaturan', [PetugasController::class, 'pengaturan_action'])->name('pengaturan.action');
-        
+        Route::get('adminpengaturan', [AdminController::class, 'pengaturan'])->name('adminpengaturan');
+        Route::post('adminpengaturan', [AdminController::class, 'pengaturan_action'])->name('adminpengaturan.action');
     });
 });
 // END ADMIN
@@ -60,14 +59,22 @@ Route::group(['middleware' => 'isLogin'], function () {
 Route::group(['middleware' => 'isLogin'], function () {
     Route::group(['middleware' => 'auth:petugas'], function () {
         // Dashboard Petugas
-        Route::get('petugasdashboard', [AdminController::class, 'index'])->name('petugasdashboard');
+        Route::get('petugasdashboard', [PetugasController::class, 'index'])->name('petugasdashboard');
         // Ganti Password
-        Route::get('password', [AdminController::class, 'password'])->name('password');
-        Route::post('password', [AdminController::class, 'password_action'])->name('password.action');
+        Route::get('password', [PetugasController::class, 'password'])->name('password');
+        Route::post('password', [PetugasController::class, 'password_action'])->name('password.action');
         // Pengaturan
-        Route::get('pengaturan', [AdminController::class, 'pengaturan'])->name('pengaturan');
-        Route::post('pengaturan', [AdminController::class, 'pengaturan_action'])->name('pengaturan.action');
-        
+        Route::get('pengaturan', [PetugasController::class, 'pengaturan'])->name('pengaturan');
+        Route::post('pengaturan', [PetugasController::class, 'pengaturan_action'])->name('pengaturan.action');
     });
 });
 // END PETUGAS
+
+// MENU
+Route::group(['middleware' => 'isLogin'], function () {
+    Route::resource('/barang', \App\Http\Controllers\BarangController::class);
+    Route::resource('/lelang', \App\Http\Controllers\LelangController::class);
+    Route::resource('/petugas', \App\Http\Controllers\PetugasController::class);
+    Route::resource('/user', \App\Http\Controllers\UserController::class);
+});
+// END MENU

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Level;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -36,7 +37,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        $data['title'] = 'Login Admin';
+        $data['title'] = 'Login User';
         return view('login', $data);
     }
 
@@ -46,27 +47,26 @@ class AuthController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
+
         if (Auth::guard('user')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('userdashboard');
-        }
-
-        if (Auth::guard('admin')->attempt($credentials)) {
+        } elseif (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('userdashboard');
-        }
-        if (Auth::guard('petugas')->attempt($credentials)) {
+            return redirect('admindashboard');
+        } elseif (Auth::guard('petugas')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('petugasdashboard');
         }
         return back()->withErrors(['password' => 'Wrong username or password!']);
     }
 
+
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('home');
+        return redirect('/');
     }
 }
