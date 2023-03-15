@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Petugas;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class PetugasController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Dashboard Petugas';
-        return view('petugas/dashboard', $data);
+        $data['title'] = 'Dashboard Admin';
+        return view('admin/dashboard', $data);
     }
     public function pengaturan()
     {
         $data['title'] = 'Pengaturan';
-        return view('petugas/menu/pengaturan', $data);
+        return view('admin/menu/pengaturan', $data);
     }
 
     public function password()
     {
         $data['title'] = 'Ganti Password';
-        return view('petugas/menu/password', $data);
+        return view('admin/menu/password', $data);
     }
 
     public function password_action(Request $request)
@@ -33,7 +33,7 @@ class PetugasController extends Controller
             'new_password' => 'required|confirmed',
         ]);
 
-        $user = Petugas::find(Auth::id());
+        $user = Admin::find(Auth::id());
         $user->password = Hash::make($request->new_password);
         $user->save();
         $request->session()->regenerate();

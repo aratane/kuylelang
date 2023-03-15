@@ -9,51 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function register()
+    public function index()
     {
-        $data['title'] = 'Register';
-        return view('user/register', $data);
+        $data['title'] = 'Dashboard Masyarakat';
+        return view('user/dashboard', $data);
     }
-
-    public function register_action(Request $request)
-    {
-        $request->validate([
-            'nama_lengkap' => 'required',
-            'username' => 'required|unique:tb_masyarakat',
-            'telp' => 'required',
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
-        ]);
-        $user = new User([
-            'nama_lengkap' => $request->nama_lengkap,
-            'username' => $request->username,
-            'telp' => $request->telp,
-            'password' => Hash::make($request->password),
-        ]);
-        $user->save();
-        return redirect()->route('login')->with('success', 'Registrasi Berhasil. Silakan Login!');
-    }
-
-    public function login()
-    {
-        $data['title'] = 'Login';
-        return view('user/login', $data);
-    }
-
-    public function login_action(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->intended('dashboard');
-        }
-
-        return back()->withErrors(['password' => 'Wrong username or password!']);
-    }
-
     public function pengaturan()
     {
         $data['title'] = 'Pengaturan';
@@ -78,19 +38,5 @@ class UserController extends Controller
         $user->save();
         $request->session()->regenerate();
         return back()->with('success', 'Password Berhasil Diganti!');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
-    }
-
-    public function dashboard()
-    {
-        $data['title'] = 'Dashboard';
-        return view('user.dashboard', $data);
     }
 }

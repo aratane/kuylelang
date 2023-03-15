@@ -17,7 +17,11 @@ class isLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
+        if (Auth::guard('user')->check()) {
+            return $next($request);
+        } elseif (Auth::guard('admin')->check()) {
+            return $next($request);
+        } elseif (Auth::guard('petugas')->check()) {
             return $next($request);
         }
         return redirect('login')->withErrors('Silakan login terlebih dahulu');

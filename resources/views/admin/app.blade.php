@@ -36,7 +36,7 @@
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="{{ route('dashboard') }}">
+          <a href="{{ route('admindashboard') }}">
             <span class="icon">
               <i class="lni lni-lineicons-symbol-alt-2"></i>
             </span>
@@ -60,7 +60,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('dashboard') }}">
+              <a href="{{ route('admindashboard') }}">
                 <span class="icon">
                   <i class="lni lni-money-location"></i>
                 </span>
@@ -68,7 +68,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('dashboard') }}">
+              <a href="{{ route('admindashboard') }}">
                 <span class="icon">
                   <i class="lni lni-reply"></i>
                 </span>
@@ -78,7 +78,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('dashboard') }}">
+          <a href="{{ route('admindashboard') }}">
             <span class="icon">
               <i class="lni lni-ticket-alt"></i>
             </span>
@@ -247,7 +247,7 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2 id="ucapan">Hallo, <b>{{ Auth::user()->nama_lengkap }}</b></h2>
+                <h2 id="ucapan">Hallo, <b>{{ Auth::guard('admin')->user()->nama_petugas }}</b></h2>
                 <script type='text/javascript'>
                   var now = new Date();
                   var hours = now.getHours();

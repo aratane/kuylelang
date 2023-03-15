@@ -36,7 +36,7 @@
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="{{ route('userdashboard') }}">
+          <a href="{{ route('petugasdashboard') }}">
             <span class="icon">
               <i class="lni lni-lineicons-symbol-alt-2"></i>
             </span>
@@ -52,7 +52,7 @@
           </a>
           <ul id="barang" class="collapse dropdown-nav">
             <li>
-              <a href="{{ route('userpassword') }}">
+              <a href="{{ route('password') }}">
                 <span class="icon">
                   <i class="lni lni-money-location"></i>
                 </span>
@@ -60,7 +60,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('userdashboard') }}">
+              <a href="{{ route('petugasdashboard') }}">
                 <span class="icon">
                   <i class="lni lni-money-location"></i>
                 </span>
@@ -68,7 +68,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('userdashboard') }}">
+              <a href="{{ route('petugasdashboard') }}">
                 <span class="icon">
                   <i class="lni lni-reply"></i>
                 </span>
@@ -78,7 +78,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('userdashboard') }}">
+          <a href="{{ route('petugasdashboard') }}">
             <span class="icon">
               <i class="lni lni-ticket-alt"></i>
             </span>
@@ -94,7 +94,7 @@
           </a>
           <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
-              <a href="{{ route('userpassword') }}">
+              <a href="{{ route('password') }}">
                 <span class="icon">
                   <i class="lni lni-pencil-alt"></i>
                 </span>
@@ -102,7 +102,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('userpengaturan') }}">
+              <a href="{{ route('pengaturan') }}">
                 <span class="icon">
                   <i class="lni lni-cog"></i>
                 </span>
@@ -221,12 +221,12 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="{{ route('userpengaturan') }}">
+                    <a href="{{ route('pengaturan') }}">
                       <i class="lni lni-user"></i> Lihat Profil
                     </a>
                   </li>
                   <li>
-                    <a href="{{ route('userpassword') }}"> <i class="lni lni-cog"></i> Ganti Password </a>
+                    <a href="{{ route('password') }}"> <i class="lni lni-cog"></i> Ganti Password </a>
                   </li>
                   <li>
                     <a href="{{ route('logout') }}"> <i class="lni lni-exit"></i> Logout </a>
@@ -313,7 +313,6 @@
                           return i;
                         }
                         setInterval(showTime, 500);
-                        //
                       </script>
                     </li>
                   </ol>
@@ -381,6 +380,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 //message with toastr
 @if(session()->has('success'))
