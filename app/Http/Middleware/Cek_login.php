@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class isLogin
+class Cek_login
 {
     /**
      * Handle an incoming request.
@@ -15,15 +15,17 @@ class isLogin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $roles)
     {
-        if (Auth::guard('user')->check()) {
-            return $next($request);
-        } elseif (Auth::guard('admin')->check()) {
-            return $next($request);
-        } elseif (Auth::guard('petugas')->check()) {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+        $user = Auth::user();
+
+        if ($user->id_level == $roles) {
             return $next($request);
         }
-        return redirect('login')->withErrors('Silakan login terlebih dahulu');
+
+        return redirect('login')->with('error', "kamu gak punya akses");
     }
 }

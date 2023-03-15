@@ -17,8 +17,13 @@ class isTamu
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
-            return redirect('dashboard')->with('success', "Kamu sudah dalam keadaan login");
+        if (Auth::guard('user')->check()) {
+            return redirect('userdashboard')->with('success', "Kamu sudah dalam keadaan login");
+        } elseif (Auth::guard('admin')->check()) {
+            return redirect('admindashboard')->with('success', "Kamu sudah dalam keadaan login");
+        } 
+        elseif (Auth::guard('petugas')->check()) {
+            return redirect('petugasdashboard')->with('success', "Kamu sudah dalam keadaan login");
         }
         return $next($request);
     }

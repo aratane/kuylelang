@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', $title)</title>
-    
-    <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/lineicons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+  <title>@yield('title', $title)</title>
 
-  </head>
+  <!-- ========== All CSS files linkup ========= -->
+  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/lineicons.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
 
-  <body>
-<div class="row g-0 auth-row">
+</head>
+
+<body>
+  <div class="row g-0 auth-row">
     <div class="col-lg-6">
       <div class="auth-cover-wrapper bg-primary-100">
         <div class="auth-cover">
           <div class="title text-center">
-            <h1 class="text-primary mb-10">Login Akun Masyarakat</h1>
-            <p class="text-medium">
-              Bergabung bersama kami dan menangkan barang lelang yang menarik, <span><b>kami ada khusus untuk anda.</b></span>
-            </p>
+            <h1 class="text-primary mb-10">Halaman Login Pengguna</h1>
           </div>
           <div class="cover-image">
             <img src="{{ asset('') }}assets/images/auth/signin-image.svg" alt="" />
@@ -40,14 +37,14 @@
     <div class="col-lg-6">
       <div class="signup-wrapper">
         <div class="form-wrapper">
-            @if(session('success'))
-            <p class="alert alert-success">{{ session('success') }}</p>
-            @endif
-            @if($errors->any())
-            @foreach($errors->all() as $err)
-            <p class="alert alert-danger">{{ $err }}</p>
-            @endforeach
-            @endif
+          @if(session('success'))
+          <p class="alert alert-success">{{ session('success') }}</p>
+          @endif
+          @if($errors->any())
+          @foreach($errors->all() as $err)
+          <p class="alert alert-danger">{{ $err }}</p>
+          @endforeach
+          @endif
           <form method="POST" action="{{ route('login.action') }}">
             @csrf
             <div class="row">
@@ -81,7 +78,7 @@
     </div>
     <!-- end col -->
   </div>
-  </body>
+</body>
 <!-- ========= All Javascript files linkup ======== -->
 <script src="{{ asset('') }}assets/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('') }}assets/js/Chart.min.js"></script>
@@ -95,12 +92,26 @@
 
 <script>
   // ======== jvectormap activation
-  var markers = [
-    { name: "Egypt", coords: [26.8206, 30.8025] },
-    { name: "Russia", coords: [61.524, 105.3188] },
-    { name: "Canada", coords: [56.1304, -106.3468] },
-    { name: "Greenland", coords: [71.7069, -42.6043] },
-    { name: "Brazil", coords: [-14.235, -51.9253] },
+  var markers = [{
+      name: "Egypt",
+      coords: [26.8206, 30.8025]
+    },
+    {
+      name: "Russia",
+      coords: [61.524, 105.3188]
+    },
+    {
+      name: "Canada",
+      coords: [56.1304, -106.3468]
+    },
+    {
+      name: "Greenland",
+      coords: [71.7069, -42.6043]
+    },
+    {
+      name: "Brazil",
+      coords: [-14.235, -51.9253]
+    },
   ];
 
   var jvm = new jsVectorMap({
@@ -130,8 +141,12 @@
     }),
     markers: markers,
     markerStyle: {
-      initial: { fill: "#4A6CF7" },
-      selected: { fill: "#ff5050" },
+      initial: {
+        fill: "#4A6CF7"
+      },
+      selected: {
+        fill: "#ff5050"
+      },
     },
     markerLabelStyle: {
       initial: {
@@ -141,7 +156,7 @@
     },
   });
   // ====== calendar activation
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function() {
     var calendarMiniEl = document.getElementById("calendar-mini");
     var calendarMini = new FullCalendar.Calendar(calendarMiniEl, {
       initialView: "dayGridMonth",
@@ -175,24 +190,22 @@
         "Dec",
       ],
       // Information about the dataset
-      datasets: [
-        {
-          label: "",
-          backgroundColor: "transparent",
-          borderColor: "#4A6CF7",
-          data: [
-            600, 800, 750, 880, 940, 880, 900, 770, 920, 890, 976, 1100,
-          ],
-          pointBackgroundColor: "transparent",
-          pointHoverBackgroundColor: "#4A6CF7",
-          pointBorderColor: "transparent",
-          pointHoverBorderColor: "#fff",
-          pointHoverBorderWidth: 5,
-          pointBorderWidth: 5,
-          pointRadius: 8,
-          pointHoverRadius: 8,
-        },
-      ],
+      datasets: [{
+        label: "",
+        backgroundColor: "transparent",
+        borderColor: "#4A6CF7",
+        data: [
+          600, 800, 750, 880, 940, 880, 900, 770, 920, 890, 976, 1100,
+        ],
+        pointBackgroundColor: "transparent",
+        pointHoverBackgroundColor: "#4A6CF7",
+        pointBorderColor: "transparent",
+        pointHoverBorderColor: "#fff",
+        pointHoverBorderWidth: 5,
+        pointBorderWidth: 5,
+        pointRadius: 8,
+        pointHoverRadius: 8,
+      }, ],
     },
 
     // Configuration options
@@ -200,7 +213,7 @@
     options: {
       tooltips: {
         callbacks: {
-          labelColor: function (tooltipItem, chart) {
+          labelColor: function(tooltipItem, chart) {
             return {
               backgroundColor: "#ffffff",
             };
@@ -232,32 +245,28 @@
       },
 
       scales: {
-        yAxes: [
-          {
-            gridLines: {
-              display: false,
-              drawTicks: false,
-              drawBorder: false,
-            },
-            ticks: {
-              padding: 35,
-              max: 1200,
-              min: 500,
-            },
+        yAxes: [{
+          gridLines: {
+            display: false,
+            drawTicks: false,
+            drawBorder: false,
           },
-        ],
-        xAxes: [
-          {
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(143, 146, 161, .1)",
-              zeroLineColor: "rgba(143, 146, 161, .1)",
-            },
-            ticks: {
-              padding: 20,
-            },
+          ticks: {
+            padding: 35,
+            max: 1200,
+            min: 500,
           },
-        ],
+        }, ],
+        xAxes: [{
+          gridLines: {
+            drawBorder: false,
+            color: "rgba(143, 146, 161, .1)",
+            zeroLineColor: "rgba(143, 146, 161, .1)",
+          },
+          ticks: {
+            padding: 20,
+          },
+        }, ],
       },
     },
   });
@@ -286,17 +295,15 @@
         "Dec",
       ],
       // Information about the dataset
-      datasets: [
-        {
-          label: "",
-          backgroundColor: "#4A6CF7",
-          barThickness: 6,
-          maxBarThickness: 8,
-          data: [
-            600, 700, 1000, 700, 650, 800, 690, 740, 720, 1120, 876, 900,
-          ],
-        },
-      ],
+      datasets: [{
+        label: "",
+        backgroundColor: "#4A6CF7",
+        barThickness: 6,
+        maxBarThickness: 8,
+        data: [
+          600, 700, 1000, 700, 650, 800, 690, 740, 720, 1120, 876, 900,
+        ],
+      }, ],
     },
     // Configuration options
     options: {
@@ -305,7 +312,7 @@
       backgroundColor: "#F3F6F8",
       tooltips: {
         callbacks: {
-          labelColor: function (tooltipItem, chart) {
+          labelColor: function(tooltipItem, chart) {
             return {
               backgroundColor: "rgba(104, 110, 255, .0)",
             };
@@ -333,33 +340,29 @@
       },
 
       scales: {
-        yAxes: [
-          {
-            gridLines: {
-              display: false,
-              drawTicks: false,
-              drawBorder: false,
-            },
-            ticks: {
-              padding: 35,
-              max: 1200,
-              min: 0,
-            },
+        yAxes: [{
+          gridLines: {
+            display: false,
+            drawTicks: false,
+            drawBorder: false,
           },
-        ],
-        xAxes: [
-          {
-            gridLines: {
-              display: false,
-              drawBorder: false,
-              color: "rgba(143, 146, 161, .1)",
-              zeroLineColor: "rgba(143, 146, 161, .1)",
-            },
-            ticks: {
-              padding: 20,
-            },
+          ticks: {
+            padding: 35,
+            max: 1200,
+            min: 0,
           },
-        ],
+        }, ],
+        xAxes: [{
+          gridLines: {
+            display: false,
+            drawBorder: false,
+            color: "rgba(143, 146, 161, .1)",
+            zeroLineColor: "rgba(143, 146, 161, .1)",
+          },
+          ticks: {
+            padding: 20,
+          },
+        }, ],
       },
     },
   });
@@ -388,8 +391,7 @@
         "Dec",
       ],
       // Information about the dataset
-      datasets: [
-        {
+      datasets: [{
           label: "Revenue",
           backgroundColor: "transparent",
           borderColor: "#4a6cf7",
@@ -470,32 +472,28 @@
       legend: false,
 
       scales: {
-        yAxes: [
-          {
-            gridLines: {
-              display: false,
-              drawTicks: false,
-              drawBorder: false,
-            },
-            ticks: {
-              padding: 35,
-              max: 300,
-              min: 50,
-            },
+        yAxes: [{
+          gridLines: {
+            display: false,
+            drawTicks: false,
+            drawBorder: false,
           },
-        ],
-        xAxes: [
-          {
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(143, 146, 161, .1)",
-              zeroLineColor: "rgba(143, 146, 161, .1)",
-            },
-            ticks: {
-              padding: 20,
-            },
+          ticks: {
+            padding: 35,
+            max: 300,
+            min: 50,
           },
-        ],
+        }, ],
+        xAxes: [{
+          gridLines: {
+            drawBorder: false,
+            color: "rgba(143, 146, 161, .1)",
+            zeroLineColor: "rgba(143, 146, 161, .1)",
+          },
+          ticks: {
+            padding: 20,
+          },
+        }, ],
       },
     },
   });
@@ -510,8 +508,7 @@
     data: {
       labels: ["Jan", "Fab", "Mar", "Apr", "May", "Jun"],
       // Information about the dataset
-      datasets: [
-        {
+      datasets: [{
           label: "",
           backgroundColor: "#4A6CF7",
           barThickness: "flex",
@@ -534,7 +531,7 @@
       backgroundColor: "#F3F6F8",
       tooltips: {
         callbacks: {
-          labelColor: function (tooltipItem, chart) {
+          labelColor: function(tooltipItem, chart) {
             return {
               backgroundColor: "rgba(104, 110, 255, .0)",
             };
@@ -562,36 +559,33 @@
       },
 
       scales: {
-        yAxes: [
-          {
-            gridLines: {
-              display: false,
-              drawTicks: false,
-              drawBorder: false,
-            },
-            ticks: {
-              padding: 35,
-              max: 1200,
-              min: 0,
-            },
+        yAxes: [{
+          gridLines: {
+            display: false,
+            drawTicks: false,
+            drawBorder: false,
           },
-        ],
-        xAxes: [
-          {
-            gridLines: {
-              display: false,
-              drawBorder: false,
-              color: "rgba(143, 146, 161, .1)",
-              zeroLineColor: "rgba(143, 146, 161, .1)",
-            },
-            ticks: {
-              padding: 20,
-            },
+          ticks: {
+            padding: 35,
+            max: 1200,
+            min: 0,
           },
-        ],
+        }, ],
+        xAxes: [{
+          gridLines: {
+            display: false,
+            drawBorder: false,
+            color: "rgba(143, 146, 161, .1)",
+            zeroLineColor: "rgba(143, 146, 161, .1)",
+          },
+          ticks: {
+            padding: 20,
+          },
+        }, ],
       },
     },
   });
-    // =========== chart four end
+  // =========== chart four end
 </script>
+
 </html>

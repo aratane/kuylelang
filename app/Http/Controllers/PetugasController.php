@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Level;
+use App\Models\Petugas;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
+class PetugasController extends Controller
 {
     public function pengaturan()
     {
         $data['title'] = 'Pengaturan';
-        return view('user/menu/pengaturan', $data);
+        return view('petugas/menu/pengaturan', $data);
     }
 
     public function password()
     {
         $data['title'] = 'Ganti Password';
-        return view('user/menu/password', $data);
+        return view('petugas/menu/password', $data);
     }
 
     public function password_action(Request $request)
@@ -28,7 +31,7 @@ class UserController extends Controller
             'new_password' => 'required|confirmed',
         ]);
 
-        $user = User::find(Auth::id());
+        $user = Petugas::find(Auth::id());
         $user->password = Hash::make($request->new_password);
         $user->save();
         $request->session()->regenerate();
@@ -42,9 +45,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'List User Lelang';
-        $user = User::latest()->paginate(5);
-        return view('admin/menu/user', compact('user'), $data);
+        $data['title'] = 'List Data Petugas';
+        $petugas = Petugas::join('tb_level', 'tb_petugas.id_level', '=', 'tb_level.id_level')->paginate(5, array('tb_petugas.*', 'tb_level.level'));
+        return view('admin/menu/petugas', compact('petugas'), $data);
     }
 
     /**
@@ -54,8 +57,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'List user';
-        return view('admin/menu/adduser', $data);
+        $level = Level::all();
+        $data['title'] = 'List Akun Petugas';
+        return view('admin/menu/addpetugas', compact('level'), $data);
     }
 
     /**
@@ -68,21 +72,21 @@ class UserController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nama_lengkap'     => 'required|min:5',
-            'username'   => 'required|unique:tb_masyarakat',
+            'nama_petugas'     => 'required|min:5',
+            'username'   => 'required|unique:tb_petugas',
             'password'   => 'required',
-            'telp'   => 'required',
+            'id_level'   => 'required',
         ]);
 
         //create post
-        User::create([
-            'nama_lengkap'  => $request->nama_lengkap,
+        Petugas::create([
+            'nama_petugas'  => $request->nama_petugas,
             'username'   => $request->username,
             'password' => Hash::make($request->password),
-            'telp'   => $request->telp,
+            'id_level'   => $request->id_level,
         ]);
 
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('petugas.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -91,10 +95,10 @@ class UserController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function edit(User $barang)
+    public function edit(Petugas $petugas)
     {
-        $data['title'] = 'Edit user';
-        return view('admin/menu/edituser', compact('user'), $data);
+        $data['title'] = 'Edit Petugas';
+        return view('admin/menu/editpetugas', compact('petugas'), $data);
     }
 
     /**
@@ -104,25 +108,26 @@ class UserController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Petugas $petugas)
     {
         //validate form
         $this->validate($request, [
-            'nama_lengkap'     => 'required|min:5',
-            'username'   => 'required|unique:tb_masyarakat',
+            'nama_petugas'     => 'required|min:5',
+            'username'   => 'required|unique:tb_petugas',
             'password'   => 'required',
-            'telp'   => 'required',
+            'id_level'   => 'required',
         ]);
 
-        $user->update([
-            'nama_lengkap'     => $request->nama_lengkap,
+        $petugas->update([
+            'nama_petugas'     => $request->nama_petugas,
             'username'   => $request->username,
             'password' => Hash::make($request->password),
-            'telp'   => $request->telp,
+            'id_level'   => $request->id_level,
         ]);
 
+
         //redirect to index
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('petugas.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -131,12 +136,12 @@ class UserController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function destroy(User $user)
+    public function destroy(Petugas $petugas)
     {
         //delete post
-        $user->delete();
+        $petugas->delete();
 
         //redirect to index
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('petugas.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

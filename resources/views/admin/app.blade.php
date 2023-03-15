@@ -36,11 +36,11 @@
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="{{ route('userdashboard') }}">
+          <a href="{{ route('admindashboard') }}">
             <span class="icon">
               <i class="lni lni-lineicons-symbol-alt-2"></i>
             </span>
-            <span class="text">Dashboard</span>
+            <span class="text">Dashboard Admin</span>
           </a>
         </li>
         <li class="nav-item nav-item-has-children">
@@ -52,33 +52,85 @@
           </a>
           <ul id="barang" class="collapse dropdown-nav">
             <li>
-              <a href="{{ route('userpassword') }}">
+              <a href="{{ route('barang.create') }}">
                 <span class="icon">
                   <i class="lni lni-money-location"></i>
                 </span>
-                <span class="text">Penawaran</span>
+                <span class="text">Tambah Data</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('userdashboard') }}">
+              <a href="{{ route('barang.index') }}">
                 <span class="icon">
                   <i class="lni lni-money-location"></i>
                 </span>
-                <span class="text">List Lelang</span>
+                <span class="text">List Data</span>
               </a>
             </li>
-            <li>
-              <a href="{{ route('userdashboard') }}">
+            <!-- <li>
+              <a href="{{ route('admindashboard') }}">
                 <span class="icon">
                   <i class="lni lni-reply"></i>
                 </span>
                 <span class="text">Pengajuan</span>
               </a>
+            </li> -->
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-children">
+          <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#admin" aria-controls="admin" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon">
+              <i class="lni lni-archive"></i>
+            </span>
+            <span class="text">Petugas & Admin</span>
+          </a>
+          <ul id="admin" class="collapse dropdown-nav">
+            <li>
+              <a href="{{ route('petugas.create') }}">
+                <span class="icon">
+                  <i class="lni lni-money-location"></i>
+                </span>
+                <span class="text">Tambah Data</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('petugas.index') }}">
+                <span class="icon">
+                  <i class="lni lni-money-location"></i>
+                </span>
+                <span class="text">List Data</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-children">
+          <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#user" aria-controls="user" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon">
+              <i class="lni lni-archive"></i>
+            </span>
+            <span class="text">Masyarakat</span>
+          </a>
+          <ul id="user" class="collapse dropdown-nav">
+            <li>
+              <a href="{{ route('user.create') }}">
+                <span class="icon">
+                  <i class="lni lni-money-location"></i>
+                </span>
+                <span class="text">Tambah Data</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('user.index') }}">
+                <span class="icon">
+                  <i class="lni lni-money-location"></i>
+                </span>
+                <span class="text">List Data</span>
+              </a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('userdashboard') }}">
+          <a href="{{ route('admindashboard') }}">
             <span class="icon">
               <i class="lni lni-ticket-alt"></i>
             </span>
@@ -94,7 +146,7 @@
           </a>
           <ul id="ddmenu_2" class="collapse dropdown-nav">
             <li>
-              <a href="{{ route('userpassword') }}">
+              <a href="{{ route('adminpassword') }}">
                 <span class="icon">
                   <i class="lni lni-pencil-alt"></i>
                 </span>
@@ -102,7 +154,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('userpengaturan') }}">
+              <a href="{{ route('adminpengaturan') }}">
                 <span class="icon">
                   <i class="lni lni-cog"></i>
                 </span>
@@ -210,7 +262,7 @@
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6 class="hidden-mobile">{{ Auth::user()->nama_lengkap }}</h6>
+                      <h6 class="hidden-mobile">{{ Auth::guard('admin')->user()->nama_petugas }}</h6>
                       <div class="image">
                         <img src="assets/images/profile/profile-image.png" alt="" />
                         <span class="status"></span>
@@ -221,12 +273,12 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="{{ route('userpengaturan') }}">
+                    <a href="{{ route('adminpengaturan') }}">
                       <i class="lni lni-user"></i> Lihat Profil
                     </a>
                   </li>
                   <li>
-                    <a href="{{ route('userpassword') }}"> <i class="lni lni-cog"></i> Ganti Password </a>
+                    <a href="{{ route('adminpassword') }}"> <i class="lni lni-cog"></i> Ganti Password </a>
                   </li>
                   <li>
                     <a href="{{ route('logout') }}"> <i class="lni lni-exit"></i> Logout </a>
@@ -247,7 +299,7 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2 id="ucapan">Hallo, <b>{{ Auth::user()->nama_lengkap }}</b></h2>
+                <h2 id="ucapan">Hallo, <b>{{ Auth::guard('admin')->user()->nama_petugas }}</b></h2>
                 <script type='text/javascript'>
                   var now = new Date();
                   var hours = now.getHours();
@@ -313,7 +365,6 @@
                           return i;
                         }
                         setInterval(showTime, 500);
-                        //
                       </script>
                     </li>
                   </ol>
@@ -381,6 +432,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 //message with toastr
 @if(session()->has('success'))
