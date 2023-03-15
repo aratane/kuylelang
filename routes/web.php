@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home', ['title']);
 })->name('home');
+Route::get('/', [BarangController::class, 'home'])->name('home');
 
 // AUTH
 Route::group(['middleware' => 'isTamu'], function () {
@@ -54,21 +55,6 @@ Route::group(['middleware' => 'isLogin'], function () {
     });
 });
 // END ADMIN
-
-// PETUGAS
-Route::group(['middleware' => 'isLogin'], function () {
-    Route::group(['middleware' => 'auth:petugas'], function () {
-        // Dashboard Petugas
-        Route::get('petugasdashboard', [PetugasController::class, 'index'])->name('petugasdashboard');
-        // Ganti Password
-        Route::get('password', [PetugasController::class, 'password'])->name('password');
-        Route::post('password', [PetugasController::class, 'password_action'])->name('password.action');
-        // Pengaturan
-        Route::get('pengaturan', [PetugasController::class, 'pengaturan'])->name('pengaturan');
-        Route::post('pengaturan', [PetugasController::class, 'pengaturan_action'])->name('pengaturan.action');
-    });
-});
-// END PETUGAS
 
 // MENU
 Route::group(['middleware' => 'isLogin'], function () {

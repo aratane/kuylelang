@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,14 @@ class BarangController extends Controller
         $data['title'] = 'List Barang Lelang';
         $barang = Barang::latest()->paginate(5);
         return view('admin/menu/barang', compact('barang'), $data);
+    }
+
+    public function home()
+    {
+        $data['title'] = 'Beranda My E-Lelang';
+        $home = Barang::latest()->paginate(6);
+        $testi = User::latest()->paginate(6);
+        return view('home', compact('home', 'testi'), $data);
     }
 
     /**

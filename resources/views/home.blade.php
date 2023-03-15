@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>My E-Lelang Website</title>
+  <title>My E-Lelang</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -14,9 +14,7 @@
   <link href="{{ asset('') }}assets/home/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('') }}assets/home/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +31,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="index.html">My E-Lelang</a></h1>
+      <h1 class="logo"><a href="index.html">E-Lelang</a></h1>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
@@ -148,26 +146,22 @@
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-              class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
             <p>Pelanggan</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-              class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
             <p>Barang Lelang</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="63" data-purecounter-duration="1"
-              class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="63" data-purecounter-duration="1" class="purecounter"></span>
             <p>Petugas Lelang</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
-              class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
             <p>Administrator Perusahaan</p>
           </div>
 
@@ -249,114 +243,36 @@
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
-
         <div class="section-title">
           <span>Barang Lelang</span>
           <h2>Barang Lelang</h2>
           <p>Berikut ini adalah daftar barang-barang yang sedang di lelang</p>
         </div>
 
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          @forelse ($home as $data)
+          <div class="col">
+            <div class="card">
+              <img src="{{ Storage::url('public/barang/').$data->foto }}" class="card-img-top" width="600" height="200" />
+              <div class="card-body">
+                <label><b>Nama Barang:</b></label>
+                <h5 class="card-title">{{ $data->nama_barang }}</h5>
+                <label><b>Deskripsi Barang:</b></label>
+                <p class="card-text">{{ $data->deskripsi_barang }}</p>
+                <label><b>Tanggal Rilis:</b></label>
+                <p class="card-text">{{ $data->tgl }}</p>
+                <label><b>Harga Barang:</b></label>
+                <p class="card-text">{{ $data->formatRupiah('harga_awal') }}</p>
+                <br>
+                <a href="login">Bid Sekarang</a>
+              </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
+          @empty
+          <div class="alert alert-danger">
+            Data Barang belum Tersedia.
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{ asset('') }}assets/home/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{{ asset('') }}assets/home/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
+          @endforelse
         </div>
 
       </div>
@@ -365,16 +281,15 @@
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
       <div class="container">
-
         <div class="section-title">
           <span>Testimoni Pelanggan</span>
           <h2>Testimoni Pelanggan</h2>
           <p>Beberapa kepuasan penilaian dari pelanggan kami</p>
         </div>
 
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonials-slider swiper text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-
+            @forelse ($testi as $data)
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <p>
@@ -382,41 +297,16 @@
                   Terbaik
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                  alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
+                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-1.jpg" class="testimonial-img text-right" alt="">
+                <h5 class="card-title">{{ $data->nama_lengkap }}</h5>
+                <p>Masyarakat</p>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Barang bagus
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                  alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Tidak ada cacat
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="{{ asset('') }}assets/home/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                  alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
+            </div>
+            @empty
+            <div class="alert alert-danger">
+              Data Barang belum Tersedia.
+            </div>
+            @endforelse
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -471,9 +361,7 @@
                 <h4>Call:</h4>
                 <p>(62) 8637725232</p>
               </div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15842.656206572447!2d107.6791652!3d-6.9306977!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c2ade076ca49%3A0x3386663587285417!2sSekolah%20Menengah%20Kejuruan%20Igasar%20Pindad!5e0!3m2!1sid!2sid!4v1677126022389!5m2!1sid!2sid"
-                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15842.656206572447!2d107.6791652!3d-6.9306977!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c2ade076ca49%3A0x3386663587285417!2sSekolah%20Menengah%20Kejuruan%20Igasar%20Pindad!5e0!3m2!1sid!2sid!4v1677126022389!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
             </div>
 
           </div>
@@ -527,8 +415,7 @@
         <div class="row footer-newsletter justify-content-center">
           <div class="col-lg-6">
             <form action="" method="post">
-              <input type="email" name="email" placeholder="Masukan Email anda ..."><input type="submit"
-                value="Berlangganan">
+              <input type="email" name="email" placeholder="Masukan Email anda ..."><input type="submit" value="Berlangganan">
             </form>
           </div>
         </div>
@@ -551,8 +438,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <script src="{{ asset('') }}assets/home/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="{{ asset('') }}assets/home/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
