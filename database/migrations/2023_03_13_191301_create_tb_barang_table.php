@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('tgl');
             $table->integer('harga_awal');
             $table->string('deskripsi_barang');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id_user')->on('tb_masyarakat');
             $table->timestamps();
         });
     }

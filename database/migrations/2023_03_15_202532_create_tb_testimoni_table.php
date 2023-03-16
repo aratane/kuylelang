@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lelangs', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tb_testimoni', function (Blueprint $table) {
+            $table->id('id_testimoni');
+            $table->enum('kepuasan', ['buruk', 'cukup', 'puas', 'senang', 'bahagia']);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lelangs');
+        Schema::dropIfExists('tb_testimoni');
     }
 };
