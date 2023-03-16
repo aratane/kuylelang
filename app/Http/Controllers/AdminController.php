@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Barang;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,9 +14,10 @@ class AdminController extends Controller
     public function index()
     {
         $data['title'] = 'Dashboard Admin';
-        $barang = Barang::latest()->paginate(6);
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
         return view('admin/dashboard', compact('barang'), $data);
     }
+
     public function pengaturan()
     {
         $data['title'] = 'Pengaturan';

@@ -333,7 +333,7 @@
                             </div>
                         @empty
                             <div class="alert alert-danger">
-                                Data Barang belum Tersedia.
+                                Data Testimoni belum Tersedia.
                             </div>
                         @endforelse
                     </div>

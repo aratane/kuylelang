@@ -14,10 +14,12 @@
                         <thead>
                             <tr>
                                 <th class="col-1">#</th>
-                                <th class="col-2">Nama Barang</th>
-                                <th class="col-2">Tanggal Rilis</th>
-                                <th class="col-2">Harga Barang</th>
-                                <th>Deskripsi Barang</th>
+                                <th class="col-2">Nama</th>
+                                <th class="col-2">Rilis</th>
+                                <th class="col-2">Harga</th>
+                                <th class="col-2">Pemilik</th>
+                                <th class="col-2">Verifikasi Oleh</th>
+                                {{-- <th>Deskripsi</th> --}}
                                 <th class="col-1 text-center">AKSI</th>
                             </tr>
                         </thead>
@@ -29,7 +31,9 @@
                                     <td>{{ $data->nama_barang }}</td>
                                     <td>{{ $data->tgl }}</td>
                                     <td>{{ $data->formatRupiah('harga_awal') }}</td>
-                                    <td>{!! $data->deskripsi_barang !!}</td>
+                                    <td>{{ $data->nama_lengkap }}</td>
+                                    <td>{{ $data->nama_petugas }}</td>
+                                    {{-- <td>{!! $data->deskripsi_barang !!}</td> --}}
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                             action="{{ route('barang.destroy', $data->id_barang) }}" method="POST">

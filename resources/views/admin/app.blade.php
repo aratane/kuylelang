@@ -137,6 +137,14 @@
                         <span class="icon">
                             <i class="lni lni-ticket-alt"></i>
                         </span>
+                        <span class="text">Buka Lelang</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admindashboard') }}">
+                        <span class="icon">
+                            <i class="lni lni-ticket-alt"></i>
+                        </span>
                         <span class="text">Faktur Lelang</span>
                     </a>
                 </li>
@@ -448,6 +456,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    var labels = {{ Js::from($labels) }};
+    var users = {{ Js::from($data) }};
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '# of Votes',
+                data: users,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 
 <script>
     // ======== jvectormap activation

@@ -73,18 +73,46 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-style mb-30">
+                <div class="title d-flex flex-wrap justify-content-between">
+                    <div class="left">
+                        <h6 class="text-medium mb-10">Yearly subscription</h6>
+                        <h3 class="text-bold">$245,479</h3>
+                    </div>
+                    <div class="right">
+                        <div class="select-style-1">
+                            <div class="select-position select-sm">
+                                <select class="light-bg">
+                                    <option value="">Yearly</option>
+                                    <option value="">Monthly</option>
+                                    <option value="">Weekly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end select -->
+                    </div>
+                </div>
+                <!-- End Title -->
+                <div class="chart">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <!-- End Chart -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-style mb-30">
                 <h6 class="mb-10">Data Barang Lelang RealTime</h6>
                 <div class="table-wrapper table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th class="col-2">Nama Barang</th>
-                                <th class="col-2">Tanggal Rilis</th>
+                                <th class="col-1">#</th>
+                                <th class="col-3">Nama Barang</th>
+                                <th class="col-2">Rilis</th>
                                 <th class="col-2">Harga Barang</th>
-                                <th class="col-3">Deskripsi Barang</th>
-                                <th class="col-1">Pemilik</th>
-                                <th class="col-1 text-center">AKSI</th>
+                                <th class="col-2">Pemilik</th>
+                                <th class="col-2">Verif Oleh</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,19 +123,8 @@
                                     <td>{{ $data->nama_barang }}</td>
                                     <td>{{ $data->tgl }}</td>
                                     <td>{{ $data->formatRupiah('harga_awal') }}</td>
-                                    <td>{!! $data->deskripsi_barang !!}</td>
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                            action="{{ route('barang.destroy', $data->id_barang) }}" method="POST">
-                                            <a href="{{ route('barang.edit', $data->id_barang) }}"><a
-                                                    href="{{ route('barang.edit', $data->id_barang) }}" class="edit"><i
-                                                        class="lni lni-pencil"></i></a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-danger"><i
-                                                        class="lni lni-trash-can"></i></button>
-                                        </form>
-                                    </td>
+                                    <td>{!! $data->nama_lengkap !!}</td>
+                                    <td>{!! $data->nama_petugas !!}</td>
                                 </tr>
                             @empty
                                 <div class="alert alert-danger">

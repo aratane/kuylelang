@@ -10,9 +10,14 @@ class Barang extends Model
 {
     use HasFactory;
     use HashFormatRupiah;
-    
+
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
 
-    protected $fillable = ['id_barang', 'foto', 'nama_barang', 'tgl', 'harga_awal', 'deskripsi_barang'];
+    protected $fillable = ['id_barang', 'foto', 'nama_barang', 'tgl', 'harga_awal', 'deskripsi_barang', 'id_user', 'nama_petugas'];
+
+    public function user()
+    {
+        return $this->hasMany(Barang::class);
+    }
 }

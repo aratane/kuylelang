@@ -17,7 +17,7 @@ class BarangController extends Controller
     public function index()
     {
         $data['title'] = 'List Barang Lelang';
-        $barang = Barang::latest()->paginate(5);
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
         return view('admin/menu/barang', compact('barang'), $data);
     }
 
@@ -37,7 +37,8 @@ class BarangController extends Controller
     public function create()
     {
         $data['title'] = 'List Barang Lelang';
-        return view('admin/menu/addbarang', $data);
+        $user = User::all();
+        return view('admin/menu/addbarang', compact('user'), $data);
     }
 
     /**
@@ -55,6 +56,8 @@ class BarangController extends Controller
             'tgl'   => 'required',
             'harga_awal'   => 'required',
             'deskripsi_barang'   => 'required',
+            'id_user' => 'required',
+            'nama_petugas' => 'required',
         ]);
 
         //upload image
@@ -68,6 +71,8 @@ class BarangController extends Controller
             'tgl'   => $request->tgl,
             'harga_awal'   => $request->harga_awal,
             'deskripsi_barang'   => $request->deskripsi_barang,
+            'id_user'   => $request->id_user,
+            'nama_petugas'   => $request->nama_petugas,
         ]);
 
         return redirect()->route('barang.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -82,7 +87,8 @@ class BarangController extends Controller
     public function edit(Barang $barang)
     {
         $data['title'] = 'Edit Barang Lelang';
-        return view('admin/menu/editbarang', compact('barang'), $data);
+        $user = User::all();
+        return view('admin/menu/editbarang', compact('barang', 'user'), $data);
     }
 
     /**
