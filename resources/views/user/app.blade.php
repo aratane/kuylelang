@@ -52,7 +52,7 @@
           </a>
           <ul id="barang" class="collapse dropdown-nav">
             <li>
-              <a href="{{ route('userpassword') }}">
+              <a href="{{ route('penawaran.index') }}">
                 <span class="icon">
                   <i class="lni lni-money-location"></i>
                 </span>
@@ -60,15 +60,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ route('userdashboard') }}">
-                <span class="icon">
-                  <i class="lni lni-money-location"></i>
-                </span>
-                <span class="text">List Lelang</span>
-              </a>
-            </li>
-            <li>
-              <a href="{{ route('userdashboard') }}">
+              <a href="{{ route('pengajuan.create') }}">
                 <span class="icon">
                   <i class="lni lni-reply"></i>
                 </span>

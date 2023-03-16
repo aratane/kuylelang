@@ -284,13 +284,15 @@
                                     width="600" height="200" />
                                 <div class="card-body">
                                     <label><b>Nama Barang:</b></label>
-                                    <h5 class="card-title">{{ $data->nama_barang }}</h5>
+                                    <p class="card-text">{{ $data->nama_barang }}</p>
                                     <label><b>Deskripsi Barang:</b></label>
                                     <p class="card-text">{{ $data->deskripsi_barang }}</p>
                                     <label><b>Tanggal Rilis:</b></label>
                                     <p class="card-text">{{ $data->tgl }}</p>
                                     <label><b>Harga Barang:</b></label>
                                     <p class="card-text">{{ $data->formatRupiah('harga_awal') }}</p>
+                                    <label><b>Pemilik:</b></label>
+                                    <p class="card-text">{{ $data->nama_lengkap }}</p
                                     <br>
                                     <a href="login">Bid Sekarang</a>
                                 </div>

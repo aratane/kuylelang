@@ -24,7 +24,7 @@ class BarangController extends Controller
     public function home()
     {
         $data['title'] = 'Beranda My E-Lelang';
-        $home = Barang::latest()->paginate(6);
+        $home = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(6, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
         $testi = User::latest()->paginate(6);
         return view('home', compact('home', 'testi'), $data);
     }
@@ -107,6 +107,8 @@ class BarangController extends Controller
             'tgl'   => 'required',
             'harga_awal'   => 'required',
             'deskripsi_barang'   => 'required',
+            'id_user' => 'nullable',
+            'nama_petugas' => 'required',
         ]);
 
         //check if image is uploaded
@@ -124,8 +126,8 @@ class BarangController extends Controller
                 'foto'     => $image->hashName(),
                 'nama_barang'     => $request->nama_barang,
                 'tgl'   => $request->tgl,
-                'harga_awal'   => $request->harga_awal,
-                'deskripsi_barang'   => $request->deskripsi_barang,
+                'id_user'   => $request->id_user,
+                'nama_petugas'   => $request->nama_petugas,
             ]);
         } else {
 
@@ -133,8 +135,8 @@ class BarangController extends Controller
             $barang->update([
                 'nama_barang'     => $request->nama_barang,
                 'tgl'   => $request->tgl,
-                'harga_awal'   => $request->harga_awal,
-                'deskripsi_barang'   => $request->deskripsi_barang,
+                'id_user'   => $request->id_user,
+                'nama_petugas'   => $request->nama_petugas,
             ]);
         }
 

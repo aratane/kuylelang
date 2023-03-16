@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,9 +43,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'List User Lelang';
+        $data['title'] = 'Dashboard Masyarakat';
         $user = User::latest()->paginate(5);
-        return view('admin/menu/user', compact('user'), $data);
+        return view('user.dashboard', compact('user'), $data);
+    }
+
+    public function list()
+    {
+        $data['title'] = 'List Data Masyarakat';
+        $user = User::latest()->paginate(5);
+        return view('admin.menu.user', compact('user'), $data);
     }
 
     /**
@@ -82,7 +90,7 @@ class UserController extends Controller
             'telp'   => $request->telp,
         ]);
 
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('user.list')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -122,7 +130,7 @@ class UserController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('user.list')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -137,6 +145,6 @@ class UserController extends Controller
         $user->delete();
 
         //redirect to index
-        return redirect()->route('user.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('user.list')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
