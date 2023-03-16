@@ -18,6 +18,8 @@ return new class extends Migration
             $table->enum('metode', ['cod', 'online']);
             $table->unsignedBigInteger('id_pembayaran');
             $table->foreign('id_pembayaran')->references('id_pembayaran')->on('tb_bayar');
+            $table->unsignedBigInteger('id_barang');
+            $table->foreign('id_barang')->references('id_barang')->on('tb_barang');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('tb_masyarakat');
             $table->unsignedBigInteger('id_petugas');

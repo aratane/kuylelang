@@ -52,12 +52,10 @@ class AuthController extends Controller
         if (Auth::guard('user')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('userdashboard');
-        } elseif (Auth::guard('admin')->attempt($credentials)) {
+        } 
+        if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('admindashboard');
-        } elseif (Auth::guard('petugas')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('petugasdashboard');
         }
         return back()->withErrors(['password' => 'Wrong username or password!']);
     }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.1.96/css/materialdesignicons.min.css">
 
     <!-- MOBILE RESPONSIVE -->
     <style>
@@ -22,14 +23,15 @@
             }
         }
     </style>
-
+    @LivewireStyles
+    @stack('css');
 </head>
 
 <body>
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
         <div class="navbar-logo">
-            <a href="index.html">
+            <a href="{{ route('admindashboard') }}">
                 <img src="{{ asset('') }}assets/images/logo/logo.svg" alt="logo" />
             </a>
         </div>
@@ -44,8 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#barang"
-                        aria-controls="barang" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#barang" aria-controls="barang" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="lni lni-archive"></i>
                         </span>
@@ -55,7 +56,7 @@
                         <li>
                             <a href="{{ route('barang.create') }}">
                                 <span class="icon">
-                                    <i class="lni lni-money-location"></i>
+                                    <i class="mdi mdi-archive-plus-outline"></i>
                                 </span>
                                 <span class="text">Tambah Data</span>
                             </a>
@@ -63,7 +64,7 @@
                         <li>
                             <a href="{{ route('barang.index') }}">
                                 <span class="icon">
-                                    <i class="lni lni-money-location"></i>
+                                    <i class="mdi mdi-archive-search-outline"></i>
                                 </span>
                                 <span class="text">List Data</span>
                             </a>
@@ -79,10 +80,9 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#admin"
-                        aria-controls="admin" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#admin" aria-controls="admin" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
-                            <i class="lni lni-archive"></i>
+                            <i class="mdi mdi-account-star"></i>
                         </span>
                         <span class="text">Petugas & Admin</span>
                     </a>
@@ -90,7 +90,7 @@
                         <li>
                             <a href="{{ route('petugas.create') }}">
                                 <span class="icon">
-                                    <i class="lni lni-money-location"></i>
+                                    <i class="mdi mdi-account-multiple-plus"></i>
                                 </span>
                                 <span class="text">Tambah Data</span>
                             </a>
@@ -98,7 +98,7 @@
                         <li>
                             <a href="{{ route('petugas.index') }}">
                                 <span class="icon">
-                                    <i class="lni lni-money-location"></i>
+                                    <i class="mdi mdi-account-search"></i>
                                 </span>
                                 <span class="text">List Data</span>
                             </a>
@@ -106,10 +106,9 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#user"
-                        aria-controls="user" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#user" aria-controls="user" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
-                            <i class="lni lni-archive"></i>
+                            <i class="mdi mdi-account"></i>
                         </span>
                         <span class="text">Masyarakat</span>
                     </a>
@@ -117,15 +116,15 @@
                         <li>
                             <a href="{{ route('user.create') }}">
                                 <span class="icon">
-                                    <i class="lni lni-money-location"></i>
+                                    <i class="mdi mdi-account-multiple-plus"></i>
                                 </span>
                                 <span class="text">Tambah Data</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('user.index') }}">
+                            <a href="{{ route('userlist') }}">
                                 <span class="icon">
-                                    <i class="lni lni-money-location"></i>
+                                    <i class="mdi mdi-account-search"></i>
                                 </span>
                                 <span class="text">List Data</span>
                             </a>
@@ -149,8 +148,7 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2"
-                        aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="lni lni-user"></i>
                         </span>
@@ -223,8 +221,7 @@
                         <div class="header-right">
                             <!-- notification start -->
                             <div class="notification-box ml-15 d-none d-md-flex">
-                                <button class="dropdown-toggle" type="button" id="notification"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="dropdown-toggle" type="button" id="notification" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="lni lni-alarm"></i>
                                     <span>2</span>
                                 </button>
@@ -274,8 +271,7 @@
                             <!-- notification end -->
                             <!-- profile start -->
                             <div class="profile-box ml-15">
-                                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="profile-info">
                                         <div class="info">
                                             <h6 class="hidden-mobile">{{ Auth::guard('admin')->user()->nama_petugas }}
@@ -440,6 +436,8 @@
             </div>
         </section>
     </main>
+    @LivewireScripts
+    @stack('js');
 </body>
 
 <!-- ========= All Javascript files linkup ======== -->
@@ -456,31 +454,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    const ctx = document.getElementById('myChart');
-    var labels = {{ Js::from($labels) }};
-    var users = {{ Js::from($data) }};
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '# of Votes',
-                data: users,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 
 <script>
     // ======== jvectormap activation

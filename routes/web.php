@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\ChartJsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +46,8 @@ Route::group(['middleware' => 'isLogin'], function () {
     Route::group(['middleware' => 'auth:admin'], function () {
         // Dashboard Admin
         Route::get('admindashboard', [AdminController::class, 'index'])->name('admindashboard');
+        // List User
+        Route::get('userlist', [UserController::class, 'list'])->name('userlist');
         // Ganti Password
         Route::get('adminpassword', [AdminController::class, 'password'])->name('adminpassword');
         Route::post('adminpassword', [AdminController::class, 'password_action'])->name('adminpassword.action');
@@ -62,5 +64,7 @@ Route::group(['middleware' => 'isLogin'], function () {
     Route::resource('/lelang', \App\Http\Controllers\LelangController::class);
     Route::resource('/petugas', \App\Http\Controllers\PetugasController::class);
     Route::resource('/user', \App\Http\Controllers\UserController::class);
+    Route::resource('/pengajuan', \App\Http\Controllers\PengajuanController::class);
+    Route::resource('/penawaran', \App\Http\Controllers\PenawaranController::class);
 });
 // END MENU

@@ -7,15 +7,26 @@ use App\Models\Barang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Dashboard Admin';
+        $head['title'] = 'Dashboard Admin';
         $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
-        return view('admin/dashboard', compact('barang'), $data);
+
+        // ChartJs
+        $users = Barang::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("month_name"))
+            ->orderBy('id_barang', 'ASC')
+            ->pluck('count', 'month_name');
+
+        $labels = $users->keys()->toArray();;
+        $data = $users->values()->toArray();;
+        return view('admin/dashboard', compact('barang', 'labels', 'data'), $head);
     }
 
     public function pengaturan()
