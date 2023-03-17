@@ -44,8 +44,8 @@ class UserController extends Controller
     public function index()
     {
         $data['title'] = 'Dashboard Masyarakat';
-        $user = User::latest()->paginate(5);
-        return view('user.dashboard', compact('user'), $data);
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        return view('user.dashboard', compact('barang'), $data);
     }
 
     public function list()
