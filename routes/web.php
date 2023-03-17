@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ChartJsController;
+use App\Http\Controllers\LelangController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 

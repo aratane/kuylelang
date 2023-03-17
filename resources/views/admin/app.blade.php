@@ -46,7 +46,8 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#barang" aria-controls="barang" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#barang"
+                        aria-controls="barang" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="lni lni-archive"></i>
                         </span>
@@ -80,7 +81,8 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#admin" aria-controls="admin" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#admin"
+                        aria-controls="admin" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="mdi mdi-account-star"></i>
                         </span>
@@ -106,7 +108,8 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#user" aria-controls="user" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#user"
+                        aria-controls="user" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="mdi mdi-account"></i>
                         </span>
@@ -132,7 +135,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admindashboard') }}">
+                    <a href="{{ route('lelang.index') }}">
                         <span class="icon">
                             <i class="lni lni-ticket-alt"></i>
                         </span>
@@ -144,11 +147,12 @@
                         <span class="icon">
                             <i class="lni lni-ticket-alt"></i>
                         </span>
-                        <span class="text">Faktur Lelang</span>
+                        <span class="text">Histori Lelang</span>
                     </a>
                 </li>
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2"
+                        aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="lni lni-user"></i>
                         </span>
@@ -221,7 +225,8 @@
                         <div class="header-right">
                             <!-- notification start -->
                             <div class="notification-box ml-15 d-none d-md-flex">
-                                <button class="dropdown-toggle" type="button" id="notification" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="dropdown-toggle" type="button" id="notification"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="lni lni-alarm"></i>
                                     <span>2</span>
                                 </button>
@@ -271,7 +276,8 @@
                             <!-- notification end -->
                             <!-- profile start -->
                             <div class="profile-box ml-15">
-                                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="profile-info">
                                         <div class="info">
                                             <h6 class="hidden-mobile">{{ Auth::guard('admin')->user()->nama_petugas }}

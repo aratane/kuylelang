@@ -54,4 +54,9 @@ class AdminController extends Controller
         $request->session()->regenerate();
         return back()->with('success', 'Password Berhasil Diganti!');
     }
+
+    public function bukalelang()
+    {
+        
+    }
 }
