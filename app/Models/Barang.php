@@ -14,7 +14,7 @@ class Barang extends Model
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
 
-    protected $fillable = ['id_barang', 'foto', 'nama_barang', 'tgl', 'harga_awal', 'deskripsi_barang', 'id_user', 'nama_petugas'];
+    protected $fillable = ['id_barang', 'foto', 'nama_barang', 'tgl', 'harga_awal', 'deskripsi_barang', 'id_user', 'id_petugas'];
 
     public function user()
     {

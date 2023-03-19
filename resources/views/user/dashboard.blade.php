@@ -73,6 +73,7 @@
 </div>
 <!-- End Col -->
 <!-- DATA BARANG TERVERIFIKASI -->
+<!-- DATA BARANG TERVERIFIKASI -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card-style mb-30">
@@ -99,6 +100,7 @@
                             <td>{{ $data->formatRupiah('harga_awal') }}</td>
                             <td>{!! $data->nama_lengkap !!}</td>
                             <td>{!! $data->nama_petugas !!}</td>
+                            <td></td>
                         </tr>
                         @empty
                         <div class="alert alert-danger">

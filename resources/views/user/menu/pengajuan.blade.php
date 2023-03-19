@@ -98,11 +98,11 @@
                         </div>
                         <div class="col-md-6" hidden>
                             <label class="form-label">Petugas:</label>
-                            <input type="text" class="form-control @error('nama_petugas') is-invalid @enderror"
-                                name="nama_petugas" value="{{ Auth::guard('user')->user()->nama_petugas }}" readonly>
+                            <input type="text" class="form-control @error('id_petugas') is-invalid @enderror"
+                                name="id_petugas" value="0" readonly>
 
-                            <!-- error message untuk nama_petugas -->
-                            @error('nama_petugas')
+                            <!-- error message untuk id_petugas -->
+                            @error('id_petugas')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>

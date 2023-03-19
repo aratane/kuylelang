@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('deskripsi_barang');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('tb_masyarakat');
-            $table->string('nama_petugas');
+            $table->unsignedBigInteger('id_petugas');
+            $table->foreign('id_petugas')->references('id_petugas')->on('tb_petugas');
             $table->timestamps();
         });
     }

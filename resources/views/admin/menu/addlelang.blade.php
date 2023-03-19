@@ -6,11 +6,11 @@
                 <!-- input style start -->
                 <div class="card-style mb-30">
                     <h6 class="mb-25">Form Tambah Data Lelang</h6>
-                    <form class="row g-3" action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="row g-3" action="{{ route('lelang.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
                             <label class="form-label">Nama Barang:</label>
-                            <select class="form-control" id="position-option" name="id_petugas">
+                            <select class="form-control" id="position-option" name="id_barang">
                                 <option selected disabled>Pilih Barang</option>
                                 @foreach ($barang as $data)
                                     <option value="{{ $data->id_barang }}">{{ $data->nama_barang }}</option>
@@ -36,7 +36,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" hidden>
                             <label class="form-label">Harga Akhir:</label>
                             <input type="number" class="form-control @error('harga_akhir') is-invalid @enderror"
                                 name="harga_akhir" value="{{ old('harga_akhir') }}" placeholder="Masukkan Harga ...">
@@ -76,14 +76,13 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" hidden>
                             <label class="form-label">Nama Petugas:</label>
                             <input type="text" class="form-control @error('id_petugas') is-invalid @enderror"
-                                name="id_petugas" value="{{ old('id_petugas', $barang->id_petugas) }}"
-                                placeholder="{{ Auth::guard('admin')->user()->nama_petugas }}" readonly>
+                                name="id_petugas" value="{{ Auth::guard('admin')->user()->id_petugas }}" readonly>
 
                             <!-- error message untuk status -->
-                            @error('status')
+                            @error('id_petugas')
                                 <div class="alert
                                         alert-danger mt-2">
                                     {{ $message }}

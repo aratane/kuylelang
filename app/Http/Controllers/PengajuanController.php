@@ -25,7 +25,7 @@ class PengajuanController extends Controller
             'harga_awal'   => 'required',
             'deskripsi_barang'   => 'required',
             'id_user' => 'required',
-            'nama_petugas' => 'nullable',
+            'id_petugas' => 'required',
         ]);
 
         //upload image
@@ -40,7 +40,7 @@ class PengajuanController extends Controller
             'harga_awal'   => $request->harga_awal,
             'deskripsi_barang'   => $request->deskripsi_barang,
             'id_user'   => $request->id_user,
-            'nama_petugas'   => $request->nama_petugas,
+            'id_petugas'   => $request->id_petugas,
         ]);
 
         return redirect()->route('pengajuan.create')->with(['success' => 'Data Berhasil Disimpan!']);
