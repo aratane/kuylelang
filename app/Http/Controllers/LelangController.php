@@ -7,6 +7,7 @@ use App\Models\Lelang;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LelangController extends Controller
 {
@@ -18,7 +19,10 @@ class LelangController extends Controller
     public function index()
     {
         $data['title'] = 'List Barang Lelang';
-        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $barang = Lelang::join('tb_masyarakat', 'tb_lelang.id_user', '=', 'tb_masyarakat.id_user')
+            ->join('tb_petugas', 'tb_lelang.id_petugas', '=', 'tb_petugas.id_petugas')
+            ->join('tb_barang', 'tb_lelang.id_barang', '=', 'tb_barang.id_barang')
+            ->paginate(5, array('tb_lelang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas', 'tb_barang.nama_barang'));
         return view('admin/menu/lelang', compact('barang'), $data);
     }
 
@@ -32,9 +36,7 @@ class LelangController extends Controller
         $data['title'] = 'List Barang Lelang';
         $user = User::latest()->paginate(5);
 
-        $barang = Barang::join('tb_masyarakat', 'barang.id_user', '=', 'tb_masyarakat.id_user')
-            ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
-            ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
 
         return view('admin/menu/addlelang', compact('barang', 'user'), $data);
     }
@@ -51,13 +53,13 @@ class LelangController extends Controller
         $this->validate($request, [
             'id_barang'     => 'required',
             'tgl_lelang'     => 'required',
-            'harga_akhir'     => 'required',
+            'harga_akhir'     => 'nullable',
             'id_user'     => 'required',
             'id_petugas' => 'required',
             'status'     => 'required',
         ]);
         //create post
-        Barang::create([
+        Lelang::create([
             'id_barang'     => $request->id_barang,
             'tgl_lelang'     => $request->tgl_lelang,
             'harga_akhir'     => $request->harga_akhir,
@@ -95,9 +97,9 @@ class LelangController extends Controller
         $this->validate($request, [
             'id_barang'     => 'required',
             'tgl_lelang'     => 'required',
-            'harga_akhir'     => 'required',
-            'id_user' => 'nullable',
-            'id_petugas' => 'required',
+            'harga_akhir'     => 'nullable',
+            'id_user' => 'required',
+            'nama_petugas' => 'required',
             'status'     => 'required',
         ]);
 
@@ -107,7 +109,7 @@ class LelangController extends Controller
             'tgl_lelang'     => $request->tgl_lelang,
             'harga_akhir'     => $request->harga_akhir,
             'id_user'   => $request->id_user,
-            'id_petugas'   => $request->id_petugas,
+            'nama_petugas'   => $request->nama_petugas,
             'status'   => $request->status,
         ]);
 
@@ -128,5 +130,24 @@ class LelangController extends Controller
 
         //redirect to index
         return redirect()->route('lelang.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function status(Request $request, Lelang $lelang)
+    {
+        $this->validate($request, [
+            'id_barang'     => 'required',
+            'status'     => 'required',
+        ]);
+        // Set ALL records to a status of 0
+        DB::table('tb_lelang')->where([
+            'id_barang'     => $request->id_barang,
+            'status'   => $request->status,
+        ])->update(['status' => 'ditutup']);
+
+        // Set the passed record to a status of what ever is passed in the Request
+        $lelang->status = $request->status;
+        $lelang->save();
+
+        return redirect()->route('lelang.index')->with(['success' => 'Lelang berhasil ditutup!']);
     }
 }

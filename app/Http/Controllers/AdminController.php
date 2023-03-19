@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Barang;
+use App\Models\Lelang;
+use App\Models\Petugas;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,19 +16,22 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $head['title'] = 'Dashboard Admin';
-        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $data['title'] = 'Dashboard Admin';
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
+            ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
+            ->where('tb_barang.id_petugas', '>', 0)
+            ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
 
-        // ChartJs
-        $users = Barang::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
-            ->whereYear('created_at', date('Y'))
-            ->groupBy(DB::raw("month_name"))
-            ->orderBy('id_barang', 'ASC')
-            ->pluck('count', 'month_name');
+        $totalbarang = Barang::where('id_petugas', '>', 0)->count();
+        $lelangaktif = Lelang::where('status', '=', 'dibuka')->count();
+        $jumlahuser = User::count();
+        $jumlahpetugas = Petugas::where('id_petugas', '>', 0)->count();
 
-        $labels = $users->keys()->toArray();;
-        $data = $users->values()->toArray();;
-        return view('admin/dashboard', compact('barang', 'labels', 'data'), $head);
+        $status = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
+            ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
+            ->where('tb_barang.id_petugas', '=', 0)
+            ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
+        return view('admin/dashboard', compact('barang', 'status', 'totalbarang', 'lelangaktif', 'jumlahuser', 'jumlahpetugas'), $data);
     }
 
     public function pengaturan()
@@ -57,6 +62,5 @@ class AdminController extends Controller
 
     public function bukalelang()
     {
-        
     }
 }

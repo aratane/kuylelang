@@ -44,7 +44,10 @@ class UserController extends Controller
     public function index()
     {
         $data['title'] = 'Dashboard Masyarakat';
-        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
+            ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
+            ->where('tb_barang.id_petugas', '>', 0)
+            ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
         return view('user.dashboard', compact('barang'), $data);
     }
 
@@ -90,7 +93,7 @@ class UserController extends Controller
             'telp'   => $request->telp,
         ]);
 
-        return redirect()->route('user.list')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('userlist')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -130,7 +133,7 @@ class UserController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('user.list')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('userlist')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -145,6 +148,6 @@ class UserController extends Controller
         $user->delete();
 
         //redirect to index
-        return redirect()->route('user.list')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('userlist')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

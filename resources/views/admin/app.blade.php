@@ -23,8 +23,6 @@
             }
         }
     </style>
-    @LivewireStyles
-    @stack('css');
 </head>
 
 <body>
@@ -442,8 +440,6 @@
             </div>
         </section>
     </main>
-    @LivewireScripts
-    @stack('js');
 </body>
 
 <!-- ========= All Javascript files linkup ======== -->

@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ChartJsController;
 use App\Http\Controllers\LelangController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\UserController;
+use App\Models\Lelang;
 use Illuminate\Support\Facades\Route;
 
 
@@ -49,6 +51,8 @@ Route::group(['middleware' => 'isLogin'], function () {
         Route::get('admindashboard', [AdminController::class, 'index'])->name('admindashboard');
         // List User
         Route::get('userlist', [UserController::class, 'list'])->name('userlist');
+        // Lelang status
+        Route::post('lelangstatus', [LelangController::class, 'status'])->name('lelangstatus');
         // Ganti Password
         Route::get('adminpassword', [AdminController::class, 'password'])->name('adminpassword');
         Route::post('adminpassword', [AdminController::class, 'password_action'])->name('adminpassword.action');

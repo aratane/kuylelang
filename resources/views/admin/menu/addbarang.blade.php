@@ -1,133 +1,128 @@
 @extends('admin/app')
 @section('content')
-    <div class="form-elements-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- input style start -->
-                <div class="card-style mb-30">
-                    <h6 class="mb-25">Form Tambah Data Barang</h6>
-                    <form class="row g-3" action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-md-6">
-                            <label class="form-label">Foto Barang:</label>
-                            <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto">
+<div class="form-elements-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- input style start -->
+            <div class="card-style mb-30">
+                <h6 class="mb-25">Form Tambah Data Barang</h6>
+                <form class="row g-3" action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="col-md-6">
+                        <label class="form-label">Foto Barang:</label>
+                        <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto">
 
-                            <!-- error message untuk title -->
-                            @error('foto')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <!-- error message untuk title -->
+                        @error('foto')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Nama Barang:</label>
-                            <input type="text" class="form-control @error('nama_barang') is-invalid @enderror"
-                                name="nama_barang" value="{{ old('nama_barang') }}" placeholder="Masukkan Nama Barang ...">
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nama Barang:</label>
+                        <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" value="{{ old('nama_barang') }}" placeholder="Masukkan Nama Barang ...">
 
-                            <!-- error message untuk nama_barang -->
-                            @error('nama_barang')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <!-- error message untuk nama_barang -->
+                        @error('nama_barang')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Tanggal Rilis Barang:</label>
-                            <input type="date" class="form-control @error('tgl') is-invalid @enderror" name="tgl"
-                                value="{{ old('tgl') }}" placeholder="Masukkan Tanggal Rilis ...">
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tanggal Rilis Barang:</label>
+                        <input type="date" class="form-control @error('tgl') is-invalid @enderror" name="tgl" value="{{ old('tgl') }}" placeholder="Masukkan Tanggal Rilis ...">
 
-                            <!-- error message untuk tgl -->
-                            @error('tgl')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <!-- error message untuk tgl -->
+                        @error('tgl')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Harga Barang:</label>
-                            <input type="number" class="form-control @error('harga_awal') is-invalid @enderror"
-                                name="harga_awal" value="{{ old('harga_awal') }}" placeholder="Masukkan Harga ...">
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Harga Barang:</label>
+                        <input type="number" class="form-control @error('harga_awal') is-invalid @enderror" name="harga_awal" value="{{ old('harga_awal') }}" placeholder="Masukkan Harga ...">
 
-                            <!-- error message untuk harga_awal -->
-                            @error('harga_awal')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <!-- error message untuk harga_awal -->
+                        @error('harga_awal')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
                         </div>
-                        <script type="text/javascript">
-                            var rupiah = document.getElementById('rupiah');
-                            rupiah.addEventListener('keyup', function(e) {
-                                // tambahkan 'Rp.' pada saat form di ketik
-                                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-                                rupiah.value = formatRupiah(this.value, 'Rp. ');
-                            });
+                        @enderror
+                    </div>
+                    <script type="text/javascript">
+                        var rupiah = document.getElementById('rupiah');
+                        rupiah.addEventListener('keyup', function(e) {
+                            // tambahkan 'Rp.' pada saat form di ketik
+                            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                            rupiah.value = formatRupiah(this.value, 'Rp. ');
+                        });
 
-                            /* Fungsi formatRupiah */
-                            function formatRupiah(angka, prefix) {
-                                var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                                    split = number_string.split(','),
-                                    sisa = split[0].length % 3,
-                                    rupiah = split[0].substr(0, sisa),
-                                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+                        /* Fungsi formatRupiah */
+                        function formatRupiah(angka, prefix) {
+                            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                                split = number_string.split(','),
+                                sisa = split[0].length % 3,
+                                rupiah = split[0].substr(0, sisa),
+                                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-                                // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                                if (ribuan) {
-                                    separator = sisa ? '.' : '';
-                                    rupiah += separator + ribuan.join('.');
-                                }
-
-                                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+                            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                            if (ribuan) {
+                                separator = sisa ? '.' : '';
+                                rupiah += separator + ribuan.join('.');
                             }
-                        </script>
-                        <div class="col-md-12">
-                            <label>Deskripsi Barang:</label>
-                            <div class="input-style-3">
-                                <textarea class="form-control @error('deskripsi_barang') is-invalid @enderror" name="deskripsi_barang" rows="5"
-                                    placeholder="Detail Barang ...">{{ old('deskripsi_barang') }}</textarea>
 
-                                <!-- error message untuk deskripsi_barang -->
-                                @error('deskripsi_barang')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                                <span class="icon"><i class="lni lni-text-format"></i></span>
+                            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+                        }
+                    </script>
+                    <div class="col-md-12">
+                        <label>Deskripsi Barang:</label>
+                        <div class="input-style-3">
+                            <textarea class="form-control @error('deskripsi_barang') is-invalid @enderror" name="deskripsi_barang" rows="5" placeholder="Detail Barang ...">{{ old('deskripsi_barang') }}</textarea>
+
+                            <!-- error message untuk deskripsi_barang -->
+                            @error('deskripsi_barang')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Pemilik Barang:</label>
-                            <select class="form-control" id="position-option" name="id_user">
-                                <option selected disabled>Pilih User</option>
-                                @foreach ($user as $data)
-                                    <option value="{{ $data->id_user }}">{{ $data->nama_lengkap }}</option>
-                                @endforeach
-                            </select>
-
-                            <!-- error message untuk id_user -->
-                            @error('id_user')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
                             @enderror
+                            <span class="icon"><i class="lni lni-text-format"></i></span>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Diverifikasi Oleh Petugas:</label>
-                            <input type="text" class="form-control @error('nama_petugas') is-invalid @enderror"
-                                name="nama_petugas" value="{{ Auth::guard('admin')->user()->nama_petugas }}" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Pemilik Barang:</label>
+                        <select class="form-control" id="position-option" name="id_user">
+                            <option selected disabled>Pilih User</option>
+                            @foreach ($user as $data)
+                            <option value="{{ $data->id_user }}">{{ $data->nama_lengkap }}</option>
+                            @endforeach
+                        </select>
 
-                            <!-- error message untuk nama_petugas -->
-                            @error('nama_petugas')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <!-- error message untuk id_user -->
+                        @error('id_user')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
                         </div>
-                        <button type="submit" class="btn btn-primary text-center">Tambah Data</button>
-                    </form>
-                </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6" hidden>
+                        <label class="form-label">Diverifikasi Oleh Petugas:</label>
+                        <input type="text" class="form-control @error('id_petugas') is-invalid @enderror" name="id_petugas" value="{{ Auth::guard('admin')->user()->id_petugas }}" readonly>
+
+                        <!-- error message untuk id_petugas -->
+                        @error('id_petugas')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary text-center">Tambah Data</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 @endsection

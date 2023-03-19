@@ -17,7 +17,9 @@ class BarangController extends Controller
     public function index()
     {
         $data['title'] = 'List Barang Lelang';
-        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
+              ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
+              ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
         return view('admin/menu/barang', compact('barang'), $data);
     }
 
@@ -57,7 +59,7 @@ class BarangController extends Controller
             'harga_awal'   => 'required',
             'deskripsi_barang'   => 'required',
             'id_user' => 'required',
-            'nama_petugas' => 'required',
+            'id_petugas' => 'required',
         ]);
 
         //upload image
@@ -72,7 +74,7 @@ class BarangController extends Controller
             'harga_awal'   => $request->harga_awal,
             'deskripsi_barang'   => $request->deskripsi_barang,
             'id_user'   => $request->id_user,
-            'nama_petugas'   => $request->nama_petugas,
+            'id_petugas'   => $request->id_petugas,
         ]);
 
         return redirect()->route('barang.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -108,7 +110,7 @@ class BarangController extends Controller
             'harga_awal'   => 'required',
             'deskripsi_barang'   => 'required',
             'id_user' => 'nullable',
-            'nama_petugas' => 'required',
+            'id_petugas' => 'required',
         ]);
 
         //check if image is uploaded
@@ -127,7 +129,7 @@ class BarangController extends Controller
                 'nama_barang'     => $request->nama_barang,
                 'tgl'   => $request->tgl,
                 'id_user'   => $request->id_user,
-                'nama_petugas'   => $request->nama_petugas,
+                'id_petugas'   => $request->id_petugas,
             ]);
         } else {
 
@@ -136,7 +138,7 @@ class BarangController extends Controller
                 'nama_barang'     => $request->nama_barang,
                 'tgl'   => $request->tgl,
                 'id_user'   => $request->id_user,
-                'nama_petugas'   => $request->nama_petugas,
+                'id_petugas'   => $request->id_petugas,
             ]);
         }
 
