@@ -18,15 +18,17 @@ class BarangController extends Controller
     {
         $data['title'] = 'List Barang Lelang';
         $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
-              ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
-              ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
+            ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
+            ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
         return view('admin/menu/barang', compact('barang'), $data);
     }
 
     public function home()
     {
-        $data['title'] = 'Beranda My E-Lelang';
-        $home = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(12, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $data['title'] = 'Beranda My E-Lelang'
+        $home = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
+            ->where('tb_barang.id_petugas', '>', 0)
+            ->paginate(6, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
         $testi = User::latest()->paginate(6);
         return view('home', compact('home', 'testi'), $data);
     }
