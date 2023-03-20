@@ -26,7 +26,7 @@ class BarangController extends Controller
     public function home()
     {
         $data['title'] = 'Beranda My E-Lelang';
-        $home = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(6, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $home = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(12, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
         $testi = User::latest()->paginate(6);
         return view('home', compact('home', 'testi'), $data);
     }
