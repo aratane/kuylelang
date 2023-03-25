@@ -36,8 +36,8 @@
                             <br>
                         </div>
                         <div class="card-content text-center">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#bidModal">BID BARANG SEKARANG</button>
+                            <a href="{{ route('penawaran.create', $data->id_lelang) }}" class="btn btn-primary">BID BARANG
+                                SEKARANG</a>
                         </div>
                     </div>
                 </div>
@@ -49,29 +49,4 @@
             @endforelse
         </div>
     </div>
-    <!-- end row -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="bidModal" tabindex="-1" aria-labelledby="bidModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bidModal">Penawaran Barang Lelang</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Jumlah Tawaran Anda:</label>
-                        <input type="text" class="form-control" name="harga_penawaran"
-                            placeholder="Contoh Rp. 50.000 ...">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Simpan Tawaran</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ========= card-style-1 end ========= -->
 @endsection

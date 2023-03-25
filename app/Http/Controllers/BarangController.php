@@ -28,9 +28,19 @@ class BarangController extends Controller
         $data['title'] = 'Beranda My E-Lelang';
         $home = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
             ->where('tb_barang.id_petugas', '>', 0)
-            ->paginate(6, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+            ->paginate(12, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
         $testi = User::latest()->paginate(6);
         return view('home', compact('home', 'testi'), $data);
+    }
+
+    public function pengajuan()
+    {
+        $data['title'] = 'List Pengajuan Lelang';
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')
+            ->join('tb_petugas', 'tb_barang.id_petugas', '=', 'tb_petugas.id_petugas')
+            ->where('tb_petugas.id_petugas', '=', 0)
+            ->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap', 'tb_petugas.nama_petugas'));
+        return view('admin/menu/pengajuan', compact('barang'), $data);
     }
 
     /**
@@ -111,7 +121,6 @@ class BarangController extends Controller
             'tgl'   => 'required',
             'harga_awal'   => 'required',
             'deskripsi_barang'   => 'required',
-            'id_user' => 'nullable',
             'id_petugas' => 'required',
         ]);
 
@@ -130,7 +139,8 @@ class BarangController extends Controller
                 'foto'     => $image->hashName(),
                 'nama_barang'     => $request->nama_barang,
                 'tgl'   => $request->tgl,
-                'id_user'   => $request->id_user,
+                'harga_awal' => $request->harga_awal,
+                'deskripsi_barang' => $request->deskripsi_barang,
                 'id_petugas'   => $request->id_petugas,
             ]);
         } else {
@@ -139,7 +149,8 @@ class BarangController extends Controller
             $barang->update([
                 'nama_barang'     => $request->nama_barang,
                 'tgl'   => $request->tgl,
-                'id_user'   => $request->id_user,
+                'harga_awal' => $request->harga_awal,
+                'deskripsi_barang' => $request->deskripsi_barang,
                 'id_petugas'   => $request->id_petugas,
             ]);
         }

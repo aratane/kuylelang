@@ -46,7 +46,9 @@ class PetugasController extends Controller
     public function index()
     {
         $data['title'] = 'List Data Petugas';
-        $petugas = Petugas::join('tb_level', 'tb_petugas.id_level', '=', 'tb_level.id_level')->paginate(5, array('tb_petugas.*', 'tb_level.level'));
+        $petugas = Petugas::join('tb_level', 'tb_petugas.id_level', '=', 'tb_level.id_level')
+            ->where('tb_petugas.id_petugas', '>', 0)
+            ->paginate(5, array('tb_petugas.*', 'tb_level.level'));
         return view('admin/menu/petugas', compact('petugas'), $data);
     }
 
@@ -95,10 +97,10 @@ class PetugasController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function edit(Petugas $petugas)
+    public function edit(Petugas $petuga)
     {
         $data['title'] = 'Edit Petugas';
-        return view('admin/menu/editpetugas', compact('petugas'), $data);
+        return view('admin/menu/editpetugas', compact('petuga'), $data);
     }
 
     /**
@@ -108,20 +110,18 @@ class PetugasController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function update(Request $request, Petugas $petugas)
+    public function update(Request $request, Petugas $petuga)
     {
         //validate form
         $this->validate($request, [
             'nama_petugas'     => 'required|min:5',
             'username'   => 'required|unique:tb_petugas',
-            'password'   => 'required',
             'id_level'   => 'required',
         ]);
 
-        $petugas->update([
+        $petuga->update([
             'nama_petugas'     => $request->nama_petugas,
             'username'   => $request->username,
-            'password' => Hash::make($request->password),
             'id_level'   => $request->id_level,
         ]);
 
@@ -136,10 +136,10 @@ class PetugasController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function destroy(Petugas $petugas)
+    public function destroy(Petugas $petuga)
     {
         //delete post
-        $petugas->delete();
+        $petuga->delete();
 
         //redirect to index
         return redirect()->route('petugas.index')->with(['success' => 'Data Berhasil Dihapus!']);

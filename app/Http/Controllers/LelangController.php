@@ -36,7 +36,7 @@ class LelangController extends Controller
         $data['title'] = 'List Barang Lelang';
         $user = User::latest()->paginate(5);
 
-        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(5, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
+        $barang = Barang::join('tb_masyarakat', 'tb_barang.id_user', '=', 'tb_masyarakat.id_user')->paginate(100, array('tb_barang.*', 'tb_masyarakat.nama_lengkap'));
 
         return view('admin/menu/addlelang', compact('barang', 'user'), $data);
     }

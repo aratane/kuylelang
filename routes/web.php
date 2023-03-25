@@ -65,7 +65,10 @@ Route::group(['middleware' => 'isLogin'], function () {
 
 // MENU
 Route::group(['middleware' => 'isLogin'], function () {
+    // Menu Barang
     Route::resource('/barang', \App\Http\Controllers\BarangController::class);
+    Route::get('pengajuanbarang', [BarangController::class, 'pengajuan'])->name('pengajuanbarang');
+    // Menu Lelang
     Route::resource('/lelang', \App\Http\Controllers\LelangController::class);
     Route::resource('/petugas', \App\Http\Controllers\PetugasController::class);
     Route::resource('/user', \App\Http\Controllers\UserController::class);

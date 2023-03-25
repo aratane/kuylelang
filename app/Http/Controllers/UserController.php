@@ -102,7 +102,7 @@ class UserController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function edit(User $barang)
+    public function edit(User $user)
     {
         $data['title'] = 'Edit user';
         return view('admin/menu/edituser', compact('user'), $data);
@@ -121,14 +121,12 @@ class UserController extends Controller
         $this->validate($request, [
             'nama_lengkap'     => 'required|min:5',
             'username'   => 'required|unique:tb_masyarakat',
-            'password'   => 'required',
             'telp'   => 'required',
         ]);
 
         $user->update([
             'nama_lengkap'     => $request->nama_lengkap,
             'username'   => $request->username,
-            'password' => Hash::make($request->password),
             'telp'   => $request->telp,
         ]);
 
